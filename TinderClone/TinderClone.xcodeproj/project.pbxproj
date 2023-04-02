@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		F12B1B8D29D7DCC600ED8F84 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12B1B8C29D7DCC600ED8F84 /* CardView.swift */; };
+		F14A3EE529D95A660045D363 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3EE429D95A660045D363 /* User.swift */; };
+		F14A3EE729D95BAC0045D363 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3EE629D95BAC0045D363 /* CardViewModel.swift */; };
 		F14A47B229D7CEA100CB0BC4 /* BottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A47B129D7CEA100CB0BC4 /* BottomControlsStackView.swift */; };
 		F1DECA9129D56B60001C758F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DECA9029D56B60001C758F /* AppDelegate.swift */; };
 		F1DECA9329D56B60001C758F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DECA9229D56B60001C758F /* SceneDelegate.swift */; };
-		F1DECA9829D56B60001C758F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1DECA9629D56B60001C758F /* Main.storyboard */; };
 		F1DECA9A29D56B61001C758F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1DECA9929D56B61001C758F /* Assets.xcassets */; };
 		F1DECA9D29D56B61001C758F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1DECA9B29D56B61001C758F /* LaunchScreen.storyboard */; };
 		F1DECAAB29D56CD0001C758F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DECAAA29D56CD0001C758F /* HomeViewController.swift */; };
@@ -21,11 +22,12 @@
 
 /* Begin PBXFileReference section */
 		F12B1B8C29D7DCC600ED8F84 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		F14A3EE429D95A660045D363 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F14A3EE629D95BAC0045D363 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		F14A47B129D7CEA100CB0BC4 /* BottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomControlsStackView.swift; sourceTree = "<group>"; };
 		F1DECA8D29D56B60001C758F /* TinderClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1DECA9029D56B60001C758F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1DECA9229D56B60001C758F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F1DECA9729D56B60001C758F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F1DECA9929D56B61001C758F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1DECA9C29D56B61001C758F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F1DECA9E29D56B61001C758F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,7 +74,6 @@
 				F1DECAA729D56BDC001C758F /* Controller */,
 				F1DECAA829D56C03001C758F /* API */,
 				F1DECAA929D56C0E001C758F /* Utilis */,
-				F1DECA9629D56B60001C758F /* Main.storyboard */,
 				F1DECA9929D56B61001C758F /* Assets.xcassets */,
 				F1DECA9B29D56B61001C758F /* LaunchScreen.storyboard */,
 				F1DECA9E29D56B61001C758F /* Info.plist */,
@@ -83,6 +84,7 @@
 		F1DECAA429D56B84001C758F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F14A3EE429D95A660045D363 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -100,6 +102,7 @@
 		F1DECAA629D56B96001C758F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				F14A3EE629D95BAC0045D363 /* CardViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -187,7 +190,6 @@
 			files = (
 				F1DECA9D29D56B61001C758F /* LaunchScreen.storyboard in Resources */,
 				F1DECA9A29D56B61001C758F /* Assets.xcassets in Resources */,
-				F1DECA9829D56B60001C758F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,23 +204,17 @@
 				F14A47B229D7CEA100CB0BC4 /* BottomControlsStackView.swift in Sources */,
 				F1DECA9129D56B60001C758F /* AppDelegate.swift in Sources */,
 				F1DECAAF29D570DA001C758F /* HomeNavigationStackView.swift in Sources */,
+				F14A3EE529D95A660045D363 /* User.swift in Sources */,
 				F1DECA9329D56B60001C758F /* SceneDelegate.swift in Sources */,
 				F1DECAAB29D56CD0001C758F /* HomeViewController.swift in Sources */,
 				F1DECAAD29D56FAE001C758F /* Extensions.swift in Sources */,
+				F14A3EE729D95BAC0045D363 /* CardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F1DECA9629D56B60001C758F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F1DECA9729D56B60001C758F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F1DECA9B29D56B61001C758F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -356,7 +352,6 @@
 				INFOPLIST_FILE = TinderClone/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -386,7 +381,6 @@
 				INFOPLIST_FILE = TinderClone/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

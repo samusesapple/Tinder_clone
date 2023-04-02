@@ -7,25 +7,28 @@
 
 import UIKit
 
+enum SwipeDirection: Int {
+    case left = -1
+    case right = 1
+}
+
 class CardView: UIView {
     
     // MARK: - Properties
     private let gradientLayer = CAGradientLayer()
     
+    var viewModel: CardViewModel
+    
     private let imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.image = #imageLiteral(resourceName: "jane3")
         return iv
     }()
     
     private let infoLabel: UILabel = {
        let label = UILabel()
         label.numberOfLines = 2
-        
-        let attributedText = NSMutableAttributedString(string: "Jane Doe", attributes: [.font: UIFont.systemFont(ofSize: 32, weight: .heavy), .foregroundColor: UIColor.white])
-        attributedText.append(NSMutableAttributedString(string: "  21", attributes: [.font: UIFont.systemFont(ofSize: 24), .foregroundColor: UIColor.white]))
-        label.attributedText = attributedText
+
         return label
     }()
     
@@ -36,10 +39,16 @@ class CardView: UIView {
     }()
     
     // MARK: - Lifecycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(viewModel: CardViewModel) {
+        self.viewModel = viewModel
+        super.init(frame: .zero)
         
-        backgroundColor = .systemMint
+        configureGestureRecognizers()
+        infoLabel.attributedText = viewModel.userInfoText
+        imageView.image = viewModel.user.images.first
+        
+        
+        backgroundColor = .orange
         layer.cornerRadius = 10
         clipsToBounds = true
         
@@ -54,8 +63,7 @@ class CardView: UIView {
         infoButton.setDimensions(height: 40, width: 40)
         infoButton.centerY(inView: infoLabel)
         infoButton.anchor(right: rightAnchor, paddingRight: 16)
-        
-        configureGestureRecognizers()
+
     }
     
     // 프레임의 생성이 끝난 후의 시점, 그라데이션을 프레임 기준으로 잡아야함
@@ -71,7 +79,9 @@ class CardView: UIView {
     @objc func handlePanGesture(sender: UIPanGestureRecognizer) {
         switch sender.state {
         case .began:
-            print("DEBUG: Pan did begin")
+            superview?.subviews.forEach({ view in
+                view.layer.removeAllAnimations()
+            })
         case .changed:
             panCard(sender: sender)
         case .ended:
@@ -80,7 +90,15 @@ class CardView: UIView {
         }
     }
     @objc func handleChangePhoto(sender: UITapGestureRecognizer) {
-        print("Photo Tapped")
+        let location = sender.location(in: nil).x
+        let shouldShowNextPhoto = location > self.frame.width / 2
+        
+        if shouldShowNextPhoto {
+            viewModel.showNextPhoto()
+        } else {
+            viewModel.showPreviousPhoto()
+        }
+        imageView.image = viewModel.imageToShow
     }
     
     
@@ -109,10 +127,20 @@ class CardView: UIView {
     }
     
     func resetCardPosition(sender: UIPanGestureRecognizer) {
+        let direction: SwipeDirection = sender.translation(in: nil).x > 100 ? .right : .left
+        let shouldDismissCard = abs(sender.translation(in: nil).x) > 100
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
-            self.transform = .identity
+            if shouldDismissCard { // 많이 옆으로 swipe하면,
+                let xTransition = CGFloat(direction.rawValue) * 1000
+                let offScreenTransform = self.transform.translatedBy(x: xTransition, y: 0)
+                self.transform = offScreenTransform
+            } else {
+                self.transform = .identity
+            }
         }) { _ in
-            print("DEBUG: Animation did complete")
+            if shouldDismissCard {
+                self.removeFromSuperview()
+            }
         }
     }
 
