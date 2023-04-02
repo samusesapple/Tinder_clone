@@ -10,6 +10,8 @@
 		F12B1B8D29D7DCC600ED8F84 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12B1B8C29D7DCC600ED8F84 /* CardView.swift */; };
 		F14A3EE529D95A660045D363 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3EE429D95A660045D363 /* User.swift */; };
 		F14A3EE729D95BAC0045D363 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3EE629D95BAC0045D363 /* CardViewModel.swift */; };
+		F14A3EEA29D96CBB0045D363 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3EE929D96CBB0045D363 /* LoginController.swift */; };
+		F14A3EEC29D96CCE0045D363 /* RegistrationConrtoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3EEB29D96CCE0045D363 /* RegistrationConrtoller.swift */; };
 		F14A47B229D7CEA100CB0BC4 /* BottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A47B129D7CEA100CB0BC4 /* BottomControlsStackView.swift */; };
 		F1DECA9129D56B60001C758F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DECA9029D56B60001C758F /* AppDelegate.swift */; };
 		F1DECA9329D56B60001C758F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DECA9229D56B60001C758F /* SceneDelegate.swift */; };
@@ -24,6 +26,8 @@
 		F12B1B8C29D7DCC600ED8F84 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		F14A3EE429D95A660045D363 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F14A3EE629D95BAC0045D363 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		F14A3EE929D96CBB0045D363 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		F14A3EEB29D96CCE0045D363 /* RegistrationConrtoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationConrtoller.swift; sourceTree = "<group>"; };
 		F14A47B129D7CEA100CB0BC4 /* BottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomControlsStackView.swift; sourceTree = "<group>"; };
 		F1DECA8D29D56B60001C758F /* TinderClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1DECA9029D56B60001C758F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +51,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F14A3EE829D96CA30045D363 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				F14A3EE929D96CBB0045D363 /* LoginController.swift */,
+				F14A3EEB29D96CCE0045D363 /* RegistrationConrtoller.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 		F1DECA8429D56B60001C758F = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +123,7 @@
 		F1DECAA729D56BDC001C758F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F14A3EE829D96CA30045D363 /* Authentication */,
 				F1DECAAA29D56CD0001C758F /* HomeViewController.swift */,
 			);
 			path = Controller;
@@ -203,12 +217,14 @@
 				F12B1B8D29D7DCC600ED8F84 /* CardView.swift in Sources */,
 				F14A47B229D7CEA100CB0BC4 /* BottomControlsStackView.swift in Sources */,
 				F1DECA9129D56B60001C758F /* AppDelegate.swift in Sources */,
+				F14A3EEC29D96CCE0045D363 /* RegistrationConrtoller.swift in Sources */,
 				F1DECAAF29D570DA001C758F /* HomeNavigationStackView.swift in Sources */,
 				F14A3EE529D95A660045D363 /* User.swift in Sources */,
 				F1DECA9329D56B60001C758F /* SceneDelegate.swift in Sources */,
 				F1DECAAB29D56CD0001C758F /* HomeViewController.swift in Sources */,
 				F1DECAAD29D56FAE001C758F /* Extensions.swift in Sources */,
 				F14A3EE729D95BAC0045D363 /* CardViewModel.swift in Sources */,
+				F14A3EEA29D96CBB0045D363 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
