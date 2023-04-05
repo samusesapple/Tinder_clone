@@ -10,6 +10,7 @@ import UIKit
 class LoginController: UIViewController {
     
     // MARK: - Properties
+    private var viewModel = LoginViewModel()
     
     private let iconImageView: UIImageView = {
        let iv = UIImageView()
@@ -41,11 +42,20 @@ class LoginController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTextFieldObservers()
         configureUI()
-        
     }
     
     // MARK: - Actions
+    @objc func textDidChange(sender: UITextField) {
+        if sender == emailTextField {
+            viewModel.email = sender.text
+        } else {
+            viewModel.password = sender.text
+        }
+        checkFormStatus()
+    }
+    
     @objc func handleLogin() {
         print("DEBUG: Login Button Tapped")
     }
@@ -74,7 +84,22 @@ class LoginController: UIViewController {
         
         view.addSubview(goToRegistrationButton)
         goToRegistrationButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingLeft: 32, paddingRight: 32)
+
     }
     
-
+    func configureTextFieldObservers() {
+        emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+    }
+    
+    func checkFormStatus() {
+        if viewModel.formIsValid == true {
+            authButton.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+            authButton.isEnabled = true
+        } else {
+            authButton.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+            authButton.isEnabled = false
+        }
+    }
+    
 }
