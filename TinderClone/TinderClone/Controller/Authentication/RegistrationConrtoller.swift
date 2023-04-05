@@ -21,6 +21,8 @@ class RegistrationController: UIViewController {
         return button
     }()
     
+    private var userProfileImage: UIImage?
+    
     private let emailTextField = CustomTextField(placeholder: "Email")
     private let fullNameTextField = CustomTextField(placeholder: "Full Name")
     private let passwordTextField = CustomTextField(placeholder: "Password", isSecuredText: true)
@@ -69,7 +71,20 @@ class RegistrationController: UIViewController {
     }
     
     @objc func handleRegisterUser() {
-        print("Register button tapped")
+        guard let email = emailTextField.text else { return }
+        guard let fullName = fullNameTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let userImage = userProfileImage else { return }
+        
+        let userInfo = AuthCredentials(email: email, fullName: fullName, password: password, profileImage: userImage)
+        
+        AuthService.registerUser(userInfo: userInfo) { error in
+            if let error = error {
+                print("ERROR - handleRegisterUser() : \(error.localizedDescription)")
+                return
+            }
+            print("유저 정보 등록 완료")
+        }
     }
     
     @objc func handleShowLogin() {
@@ -120,11 +135,14 @@ class RegistrationController: UIViewController {
 extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.originalImage] as? UIImage
+        userProfileImage = image
+        
         selectPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
         selectPhotoButton.layer.borderColor = UIColor(white: 1, alpha: 0.7).cgColor
         selectPhotoButton.layer.borderWidth = 3
         selectPhotoButton.layer.cornerRadius = 10
         selectPhotoButton.imageView?.contentMode = .scaleAspectFill
+        
         
         dismiss(animated: true)
     }
