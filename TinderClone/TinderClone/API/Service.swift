@@ -27,12 +27,30 @@ struct Service {
         }
     }
     
-    // [READ] UID를 갖고 Firebase-Database에 있는 유저의 데이터 받기
+    // [READ] Firebase-Database에서 특정 UID에 해당되는 유저의 데이터 받기
     static func fetchUser(withUID uid: String, completion: @escaping (User) -> Void) {
         COLLECTION_USERS.document(uid).getDocument { snapshot, error in
             guard let dataDictionary = snapshot?.data() else { return }
             let user = User.init(dictionary: dataDictionary)
             completion(user)
+        }
+    }
+    
+    static func fetchWholeUsers(completion: @escaping ([User]) -> Void) {
+        var users = [User]()
+        
+        COLLECTION_USERS.getDocuments { snapshot, error in
+            snapshot?.documents.forEach({ document in
+                let dictionary = document.data()
+                let user = User(dictionary: dictionary)
+                
+                users.append(user)
+                if users.count == snapshot?.documents.count {
+                    print("fetchWholeUsers() - snapshot.documents.count : \(String(describing: snapshot?.documents.count))")
+                    print("fetchWholeUsers() - users array count : \(users.count)")
+                    completion(users)
+                }
+            })
         }
     }
     

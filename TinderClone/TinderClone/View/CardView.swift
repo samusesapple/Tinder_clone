@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 enum SwipeDirection: Int {
     case left = -1
@@ -44,9 +45,11 @@ class CardView: UIView {
         super.init(frame: .zero)
         
         configureGestureRecognizers()
-        infoLabel.attributedText = viewModel.userInfoText
-//        imageView.image = viewModel.user.images.first
         
+        // url구조체를 사용하여 이미지 캐싱 (매번 같은 이미지 데이터를 받아와야하는 번거로움 해소)
+        imageView.sd_setImage(with: viewModel.imageURL)
+        
+        infoLabel.attributedText = viewModel.userInfoText
         
         backgroundColor = .orange
         layer.cornerRadius = 10

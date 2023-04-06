@@ -13,6 +13,13 @@ class HomeViewController: UIViewController {
     // MARK: - Properties
     
     private let topStackView = HomeNavigationStackView()
+    private let bottomStackView = BottomControlsStackView()
+    
+    private var viewModels = [CardViewModel]() {
+        didSet {
+            configureCards()
+        }
+    }
     
     private let deckView: UIView = {
        let view = UIView()
@@ -21,25 +28,29 @@ class HomeViewController: UIViewController {
         return view
     }()
     
-    private let bottomStackView = BottomControlsStackView()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         checkIfUserIsLoggedIn()
         configureUI()
-        configureCards()
 //        logOut()
-        fetchUser()
+        fetchWholeUsers()
     }
     
     // MARK: - API
     
     func fetchUser() {
-        // 최근 유저의 uid가 있는지 확인 후,
+        // 최근 유저의 uid가 있는지 확인 후, 있으면 해당되는 유저 데이터 받기
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Service.fetchUser(withUID: uid) { user in
             print("fetch user OK - fetched user name : \(user.name)")
+        }
+    }
+    
+    func fetchWholeUsers() {
+        Service.fetchWholeUsers { users in
+            self.viewModels = users.map { CardViewModel(user: $0) }
         }
     }
     
@@ -79,18 +90,11 @@ class HomeViewController: UIViewController {
     }
     
     func configureCards() {
-//        let user1 = User(name: "Jane Doe", age: 21, images: [#imageLiteral(resourceName: "jane3"), #imageLiteral(resourceName: "jane2")])
-//        let user2 = User(name: "Megan Charles", age: 22, images: [#imageLiteral(resourceName: "lady5c"), #imageLiteral(resourceName: "kelly1")])
-//        
-//        let cardView1 = CardView(viewModel: CardViewModel(user: user1))
-//        let cardView2 = CardView(viewModel: CardViewModel(user: user2))
-//        
-//        
-//        deckView.addSubview(cardView1)
-//        deckView.addSubview(cardView2)
-//        
-//        cardView1.fillSuperview()
-//        cardView2.fillSuperview()
+        viewModels.forEach { viewModel in
+            let cardView = CardView(viewModel: viewModel)
+            deckView.addSubview(cardView)
+            cardView.fillSuperview()
+        }
     }
     
     func presentLoginController() {
