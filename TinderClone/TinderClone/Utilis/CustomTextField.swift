@@ -24,7 +24,6 @@ class CustomTextField: UITextField {
          layer.cornerRadius = 5
          attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [.foregroundColor: UIColor(white: 1, alpha: 0.7)])
         isSecureTextEntry = isSecuredText!
-    
     }
     
     required init?(coder: NSCoder) {

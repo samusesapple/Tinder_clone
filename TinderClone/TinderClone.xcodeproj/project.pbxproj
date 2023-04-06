@@ -10,6 +10,7 @@
 		6AA1A34A5B8719CC302A2ACE /* Pods_TinderClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D4C0C7A6741E20A69D1BBEB /* Pods_TinderClone.framework */; };
 		F117F5C729DD6DC000A44FCC /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117F5C629DD6DC000A44FCC /* AuthService.swift */; };
 		F117F5C929DD6DE200A44FCC /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117F5C829DD6DE200A44FCC /* Service.swift */; };
+		F117F5CB29DEA09800A44FCC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117F5CA29DEA09800A44FCC /* Constants.swift */; };
 		F122E95629DD333600937C08 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F122E95529DD333600937C08 /* AuthenticationViewModel.swift */; };
 		F12B1B8D29D7DCC600ED8F84 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12B1B8C29D7DCC600ED8F84 /* CardView.swift */; };
 		F14A3EE529D95A660045D363 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3EE429D95A660045D363 /* User.swift */; };
@@ -35,6 +36,7 @@
 		6D4C0C7A6741E20A69D1BBEB /* Pods_TinderClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TinderClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F117F5C629DD6DC000A44FCC /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		F117F5C829DD6DE200A44FCC /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		F117F5CA29DEA09800A44FCC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F122E95529DD333600937C08 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		F12B1B8C29D7DCC600ED8F84 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		F14A3EE429D95A660045D363 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			children = (
 				F117F5C629DD6DC000A44FCC /* AuthService.swift */,
 				F117F5C829DD6DE200A44FCC /* Service.swift */,
+				F117F5CA29DEA09800A44FCC /* Constants.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F12B1B8D29D7DCC600ED8F84 /* CardView.swift in Sources */,
+				F117F5CB29DEA09800A44FCC /* Constants.swift in Sources */,
 				F1D0FD0B29DC2A4900AB1295 /* AuthButton.swift in Sources */,
 				F122E95629DD333600937C08 /* AuthenticationViewModel.swift in Sources */,
 				F14A47B229D7CEA100CB0BC4 /* BottomControlsStackView.swift in Sources */,

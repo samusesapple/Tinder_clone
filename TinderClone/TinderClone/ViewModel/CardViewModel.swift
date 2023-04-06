@@ -24,16 +24,16 @@ class CardViewModel {
     }
     
     func showNextPhoto() {
-        guard userPhotoIndex < user.images.count - 1 else { return }
+//        guard userPhotoIndex < user.images.count - 1 else { return }
         userPhotoIndex += 1
-        imageToShow = user.images[userPhotoIndex]
+//        imageToShow = user.images[userPhotoIndex]
         print("DEBUG: show next Image..")
     }
     
     func showPreviousPhoto() {
         guard userPhotoIndex > 0 else { return }
         userPhotoIndex -= 1
-        imageToShow = user.images[userPhotoIndex]
+//        imageToShow = user.images[userPhotoIndex]
         print("DEBUG: show previous Image..")
     }
     

@@ -83,7 +83,7 @@ class RegistrationController: UIViewController {
                 print("ERROR - handleRegisterUser() : \(error.localizedDescription)")
                 return
             }
-            print("유저 정보 등록 완료")
+            self.dismiss(animated: true)
         }
     }
     

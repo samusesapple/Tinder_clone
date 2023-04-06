@@ -15,7 +15,13 @@ struct AuthCredentials {
     let profileImage: UIImage
 }
 
+typealias AuthDataResultCallback = (AuthDataResult?, Error?) -> Void
+
 struct AuthService {
+    
+    static func logUserIn(withEmail email: String, password: String, completion: AuthDataResultCallback?) {
+        Auth.auth().signIn(withEmail: email, password: password, completion: completion)
+    }
     
     static func registerUser(userInfo credentials: AuthCredentials, completion: @escaping ((Error?)) -> Void) {
         Service.uploadImage(image: credentials.profileImage) { imageUrl in
@@ -32,7 +38,7 @@ struct AuthService {
                             "uid": userUID,
                             "age": 18] as [String : Any]
                 
-                Firestore.firestore().collection("users").document(userUID).setData(data, completion: completion)
+                COLLECTION_USERS.document(userUID).setData(data, completion: completion)
             }
             
         }

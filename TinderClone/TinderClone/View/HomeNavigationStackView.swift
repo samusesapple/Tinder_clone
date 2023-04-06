@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeNaviagtionStackView: UIStackView {
+class HomeNavigationStackView: UIStackView {
     
     // MARK: - Properties
     

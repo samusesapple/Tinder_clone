@@ -57,8 +57,18 @@ class LoginController: UIViewController {
     }
     
     @objc func handleLogin() {
-        print("DEBUG: Login Button Tapped")
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        
+        AuthService.logUserIn(withEmail: email, password: password) { result, error in
+            if let error = error {
+                print("ERROR - 유저 로그인 과정 에러 발생 : \(error.localizedDescription)")
+                return
+            }
+            self.dismiss(animated: true)
+        }
     }
+    
     @objc func handleShowRegister() {
         navigationController?.pushViewController(RegistrationController(), animated: true)
     }
