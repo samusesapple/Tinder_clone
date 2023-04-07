@@ -11,6 +11,10 @@
 		F117F5C729DD6DC000A44FCC /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117F5C629DD6DC000A44FCC /* AuthService.swift */; };
 		F117F5C929DD6DE200A44FCC /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117F5C829DD6DE200A44FCC /* Service.swift */; };
 		F117F5CB29DEA09800A44FCC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117F5CA29DEA09800A44FCC /* Constants.swift */; };
+		F117F5CD29DFEE3800A44FCC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117F5CC29DFEE3800A44FCC /* SettingsViewController.swift */; };
+		F117F5CF29DFF6AD00A44FCC /* SettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117F5CE29DFF6AD00A44FCC /* SettingsHeaderView.swift */; };
+		F117F5D129E00C9400A44FCC /* SettingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117F5D029E00C9400A44FCC /* SettingsViewCell.swift */; };
+		F117F5D329E011D500A44FCC /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117F5D229E011D500A44FCC /* SettingsViewModel.swift */; };
 		F122E95629DD333600937C08 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F122E95529DD333600937C08 /* AuthenticationViewModel.swift */; };
 		F12B1B8D29D7DCC600ED8F84 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12B1B8C29D7DCC600ED8F84 /* CardView.swift */; };
 		F14A3EE529D95A660045D363 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3EE429D95A660045D363 /* User.swift */; };
@@ -37,6 +41,10 @@
 		F117F5C629DD6DC000A44FCC /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		F117F5C829DD6DE200A44FCC /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		F117F5CA29DEA09800A44FCC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F117F5CC29DFEE3800A44FCC /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F117F5CE29DFF6AD00A44FCC /* SettingsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeaderView.swift; sourceTree = "<group>"; };
+		F117F5D029E00C9400A44FCC /* SettingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewCell.swift; sourceTree = "<group>"; };
+		F117F5D229E011D500A44FCC /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		F122E95529DD333600937C08 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		F12B1B8C29D7DCC600ED8F84 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		F14A3EE429D95A660045D363 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -147,6 +155,8 @@
 				F1DECAAE29D570DA001C758F /* HomeNavigationStackView.swift */,
 				F14A47B129D7CEA100CB0BC4 /* BottomControlsStackView.swift */,
 				F12B1B8C29D7DCC600ED8F84 /* CardView.swift */,
+				F117F5CE29DFF6AD00A44FCC /* SettingsHeaderView.swift */,
+				F117F5D029E00C9400A44FCC /* SettingsViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -156,6 +166,7 @@
 			children = (
 				F14A3EE629D95BAC0045D363 /* CardViewModel.swift */,
 				F122E95529DD333600937C08 /* AuthenticationViewModel.swift */,
+				F117F5D229E011D500A44FCC /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -165,6 +176,7 @@
 			children = (
 				F14A3EE829D96CA30045D363 /* Authentication */,
 				F1DECAAA29D56CD0001C758F /* HomeViewController.swift */,
+				F117F5CC29DFEE3800A44FCC /* SettingsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -304,10 +316,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F117F5CD29DFEE3800A44FCC /* SettingsViewController.swift in Sources */,
 				F12B1B8D29D7DCC600ED8F84 /* CardView.swift in Sources */,
 				F117F5CB29DEA09800A44FCC /* Constants.swift in Sources */,
 				F1D0FD0B29DC2A4900AB1295 /* AuthButton.swift in Sources */,
 				F122E95629DD333600937C08 /* AuthenticationViewModel.swift in Sources */,
+				F117F5D129E00C9400A44FCC /* SettingsViewCell.swift in Sources */,
 				F14A47B229D7CEA100CB0BC4 /* BottomControlsStackView.swift in Sources */,
 				F1DECA9129D56B60001C758F /* AppDelegate.swift in Sources */,
 				F14A3EEC29D96CCE0045D363 /* RegistrationConrtoller.swift in Sources */,
@@ -318,9 +332,11 @@
 				F117F5C729DD6DC000A44FCC /* AuthService.swift in Sources */,
 				F1DECAAB29D56CD0001C758F /* HomeViewController.swift in Sources */,
 				F1D0FD0929DC279000AB1295 /* CustomTextField.swift in Sources */,
+				F117F5CF29DFF6AD00A44FCC /* SettingsHeaderView.swift in Sources */,
 				F1DECAAD29D56FAE001C758F /* Extensions.swift in Sources */,
 				F14A3EE729D95BAC0045D363 /* CardViewModel.swift in Sources */,
 				F14A3EEA29D96CBB0045D363 /* LoginController.swift in Sources */,
+				F117F5D329E011D500A44FCC /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

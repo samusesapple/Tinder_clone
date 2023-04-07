@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 
 class HomeViewController: UIViewController {
-
+    
     // MARK: - Properties
     
     private let topStackView = HomeNavigationStackView()
@@ -22,7 +22,7 @@ class HomeViewController: UIViewController {
     }
     
     private let deckView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.backgroundColor = .blue
         view.layer.cornerRadius = 5
         return view
@@ -34,7 +34,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         checkIfUserIsLoggedIn()
         configureUI()
-//        logOut()
+        //        logOut()
         fetchWholeUsers()
     }
     
@@ -64,7 +64,7 @@ class HomeViewController: UIViewController {
     
     func logOut() {
         do {
-           try Auth.auth().signOut()
+            try Auth.auth().signOut()
             presentLoginController()
         } catch {
             print("로그아웃 실패")
@@ -76,6 +76,7 @@ class HomeViewController: UIViewController {
     func configureUI() {
         view.backgroundColor = .white
         navigationController?.navigationBar.isHidden = true
+        topStackView.delegate = self
         
         let mainStack = UIStackView(arrangedSubviews: [topStackView, deckView, bottomStackView])
         mainStack.axis = .vertical
@@ -86,7 +87,7 @@ class HomeViewController: UIViewController {
         mainStack.isLayoutMarginsRelativeArrangement = true
         mainStack.layoutMargins = .init(top: 0, left: 12, bottom: 0, right: 12)
         mainStack.bringSubviewToFront(deckView)
-
+        
     }
     
     func configureCards() {
@@ -105,4 +106,20 @@ class HomeViewController: UIViewController {
             self.present(nav, animated: false)
         }
     }
+    
+}
+
+extension HomeViewController: HomeNavigationStackViewDelegate {
+    func showSettings() {
+        let settingVC = SettingsViewController()
+        let naviVC = UINavigationController(rootViewController: settingVC)
+        naviVC.modalPresentationStyle = .fullScreen
+        present(naviVC, animated: true)
+    }
+    
+    func showMessages() {
+        print("show Messages")
+    }
+    
+    
 }

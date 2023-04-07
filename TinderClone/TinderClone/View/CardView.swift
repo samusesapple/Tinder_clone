@@ -92,6 +92,7 @@ class CardView: UIView {
         default: break
         }
     }
+    
     @objc func handleChangePhoto(sender: UITapGestureRecognizer) {
         let location = sender.location(in: nil).x
         let shouldShowNextPhoto = location > self.frame.width / 2

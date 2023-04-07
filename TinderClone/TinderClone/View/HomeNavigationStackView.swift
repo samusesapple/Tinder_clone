@@ -7,10 +7,16 @@
 
 import UIKit
 
+protocol HomeNavigationStackViewDelegate: AnyObject {
+    func showSettings()
+    func showMessages()
+}
+
 class HomeNavigationStackView: UIStackView {
     
     // MARK: - Properties
     
+    weak var delegate: HomeNavigationStackViewDelegate?
     let settingsButton = UIButton(type: .system)
     let messageButton = UIButton(type: .system)
     let tinderIcon = UIImageView(image: #imageLiteral(resourceName: "app_icon"))
@@ -24,7 +30,7 @@ class HomeNavigationStackView: UIStackView {
         tinderIcon.contentMode = .scaleAspectFit
         
         settingsButton.setImage(#imageLiteral(resourceName: "top_left_profile").withRenderingMode(.alwaysOriginal), for: .normal)
-        messageButton.setImage(#imageLiteral(resourceName: "top_messages_icon").withRenderingMode(.alwaysOriginal), for: .normal)
+        messageButton.setImage(#imageLiteral(resourceName: "top_right_messages").withRenderingMode(.alwaysOriginal), for: .normal)
         
         [settingsButton, UIView(), tinderIcon, UIView(), messageButton].forEach { view in
             addArrangedSubview(view)
@@ -34,6 +40,7 @@ class HomeNavigationStackView: UIStackView {
         isLayoutMarginsRelativeArrangement = true
         layoutMargins = .init(top: 0, left: 16, bottom: 0, right: 16)
         
+        addActions()
     }
     
     required init(coder: NSCoder) {
@@ -41,5 +48,18 @@ class HomeNavigationStackView: UIStackView {
     }
     
     
+    // MARK: - Add Target
+    func addActions() {
+        settingsButton.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
+        messageButton.addTarget(self, action: #selector(messageButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func settingsButtonTapped() {
+        delegate?.showSettings()
+    }
+    
+    @objc func messageButtonTapped() {
+        delegate?.showMessages()
+    }
     
 }
