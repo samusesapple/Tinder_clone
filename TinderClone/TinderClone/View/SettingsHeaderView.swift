@@ -31,7 +31,7 @@ class SettingsHeaderView: UIView {
         buttonsArray.append(createButton(2))
         
         addSubview(buttonsArray[0])
-        buttonsArray[0].anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 16)
+        buttonsArray[0].anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 16)
         buttonsArray[0].widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.45).isActive = true
         
         let buttonStack = UIStackView(arrangedSubviews: [buttonsArray[1], buttonsArray[2]])

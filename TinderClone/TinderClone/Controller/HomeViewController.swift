@@ -11,7 +11,11 @@ import Firebase
 class HomeViewController: UIViewController {
     
     // MARK: - Properties
-    private var user: User?
+    private var user: User? {
+        didSet {
+            print("HomeVC - \(String(describing: user?.name))")
+        }
+    }
     
     private let topStackView = HomeNavigationStackView()
     private let bottomStackView = BottomControlsStackView()
@@ -34,14 +38,16 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         checkIfUserIsLoggedIn()
-        configureUI()
+        // 접속한 유저 정보 + 전체 유저 정보 데이터를 Firebase에서 받아옴
         fetchUser()
         fetchWholeUsers()
+        configureUI()
     }
     
     // MARK: - API
     
     func fetchUser() {
+        
         // 최근 유저의 uid가 있는지 확인 후, 있으면 해당되는 유저 데이터 받기
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Service.fetchUser(withUID: uid) { user in
@@ -79,6 +85,7 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         topStackView.delegate = self
         
+        
         let mainStack = UIStackView(arrangedSubviews: [topStackView, deckView, bottomStackView])
         mainStack.axis = .vertical
         
@@ -110,10 +117,14 @@ class HomeViewController: UIViewController {
     
 }
 
+// MARK: - HomeNavigationStackViewDelegate
+
 extension HomeViewController: HomeNavigationStackViewDelegate {
     func showSettings() {
         guard let user = self.user else { return }
+        // settingVC에 받아놓은 최근 user 데이터를 전달
         let settingVC = SettingsViewController(user: user)
+        settingVC.delegate = self
         let naviVC = UINavigationController(rootViewController: settingVC)
         naviVC.modalPresentationStyle = .fullScreen
         present(naviVC, animated: true)
@@ -122,6 +133,18 @@ extension HomeViewController: HomeNavigationStackViewDelegate {
     func showMessages() {
         print("show Messages")
     }
+    
+    
+}
+
+// MARK: - SettingsViewControllerDelegate
+
+extension HomeViewController: SettingsViewControllerDelegate {
+    func updateUserData(_ controller: SettingsViewController, userData: User) {
+        controller.dismiss(animated: true)
+        self.user = userData
+    }
+    
     
     
 }

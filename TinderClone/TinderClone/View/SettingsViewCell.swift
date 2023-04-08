@@ -7,26 +7,32 @@
 
 import UIKit
 
+protocol SettingsViewCellDelegate: AnyObject {
+    func settingsCell(_ cell: SettingsViewCell, updateUserDataWith updateValue: String, for section: SettingsSection)
+    func settingsCell(_ cell: SettingsViewCell, updateAgeRangeWith sender: UISlider)
+}
+
 class SettingsViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    var viewModel: SettingsViewModel! {
+    var viewModel: SettingsViewModel! { // tableView cellForRowAt() 의해 viewModel이 세팅 될 때마다 호출되도록
         didSet {
             configureUI()
         }
     }
+    weak var delegate: SettingsViewCellDelegate?
     
     lazy var inputField: UITextField = {
         let tf = UITextField()
         tf.borderStyle = .none
         tf.font = UIFont.systemFont(ofSize: 16)
-        tf.placeholder = "정보를 입력해주세요."
         
         let paddingView = UIView()
         paddingView.setDimensions(height: 50, width: 28)
         tf.leftView = paddingView
         tf.leftViewMode = .always
+        tf.addTarget(self, action: #selector(updateUserInfoWithTF), for: .editingDidEnd)
         return tf
     }()
     
@@ -42,10 +48,9 @@ class SettingsViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        minAgeLabel.text = "Min: 18"
-        maxAgeLabel.text = "Max: 60"
+        selectionStyle = .none
         
-        addSubview(inputField)
+        contentView.addSubview(inputField)
         inputField.fillSuperview()
         
         // axis의 default값은 horizontal
@@ -59,7 +64,7 @@ class SettingsViewCell: UITableViewCell {
         sliderStack.axis = .vertical
         sliderStack.spacing = 16
         
-        addSubview(sliderStack)
+        contentView.addSubview(sliderStack)
         sliderStack.centerY(inView: self)
         sliderStack.anchor(left: leftAnchor, right: rightAnchor, paddingLeft: 24, paddingRight: 24)
     }
@@ -70,16 +75,36 @@ class SettingsViewCell: UITableViewCell {
     
     
     // MARK: - Actions
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
+    @objc func ageRangeDidChanged(sender: UISlider) {
+        if sender == minAgeSlider {
+            minAgeLabel.text = viewModel.minAgeLabelText(forValue: sender.value)
+        } else {
+            maxAgeLabel.text = viewModel.maxAgeLabelText(forValue: sender.value)
+        }
+        delegate?.settingsCell(self, updateAgeRangeWith: sender)
     }
     
-    @objc func ageRangeDidChanged() {
-        
+    @objc func updateUserInfoWithTF(sender: UITextField) {
+        guard let value = sender.text else { return }
+        delegate?.settingsCell(self, updateUserDataWith: value, for: viewModel.section)
     }
     
     // MARK: - Helpers
+    func configureUI() {
+        // 세팅된 viewModel로 UI 세팅하기
+        inputField.isHidden = viewModel.shouldHideInputField
+        sliderStack.isHidden = viewModel.shouldHideSlider
+        
+        // viewModel의 placeholderText로 placeholder문구 세팅
+        inputField.placeholder = viewModel.placeholderText
+        // viewModel의 userInfoValue로 텍스트 표시
+        inputField.text = viewModel.userInfoValue
+        
+        minAgeSlider.setValue(viewModel.minAgeSliderValue, animated: true)
+        maxAgeSlider.setValue(viewModel.maxAgeSliderValue, animated: true)
+        minAgeLabel.text = viewModel.minAgeLabelText(forValue: viewModel.minAgeSliderValue)
+        maxAgeLabel.text = viewModel.maxAgeLabelText(forValue: viewModel.maxAgeSliderValue)
+    }
     
     func createAgeRangeSlider() -> UISlider {
         let slider = UISlider()
@@ -88,11 +113,6 @@ class SettingsViewCell: UITableViewCell {
         slider.addTarget(self, action: #selector(ageRangeDidChanged), for: .valueChanged)
         return slider
     }
-    
-    func configureUI() {
-        inputField.isHidden = viewModel.shouldHideInputField
-        sliderStack.isHidden = viewModel.shouldHideSlider
-    }
-    
+
     
 }

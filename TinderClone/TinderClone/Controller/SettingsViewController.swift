@@ -7,17 +7,23 @@
 
 import UIKit
 
+protocol SettingsViewControllerDelegate: AnyObject {
+    func updateUserData(_ controller: SettingsViewController, userData: User)
+}
+
 class SettingsViewController: UITableViewController {
     
     // MARK: - Properties
-    private let user: User
+    private var user: User // HomeVC에서 받은 use data를 받을 인스턴스
     
     private let headerView = SettingsHeaderView()
     private let imagePicker = UIImagePickerController()
     private var imageIndex = 0
     
+    weak var delegate: SettingsViewControllerDelegate?
+    
     // MARK: - Lifecycle
-    init(user: User) {
+    init(user: User) {  // HomeVC에서 받은 use data를 전달 받을 수 있도록 custom initializer 생성
         self.user = user
         super.init(style: .plain)
     }
@@ -38,7 +44,10 @@ class SettingsViewController: UITableViewController {
     }
     
     @objc func doneButtonTapped() {
-        print("done button tapped")
+        view.endEditing(true)
+        // API에 새로 담긴 user 정보 update + local앱에 user정보 update (다시 네트워킹 요청해서 user정보 불러오기 x)
+        delegate?.updateUserData(self, userData: user) 
+        
     }
     
     // MARK: - Helpers
@@ -83,8 +92,11 @@ extension SettingsViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsViewCell") as! SettingsViewCell
         guard let section = SettingsSection(rawValue: indexPath.section) else { return cell }
+        // HomeVC에서 전달받은 user 데이터를 바탕으로 cell의 ViewModel 생성
         let viewModel = SettingsViewModel(user: user, section: section)
+        // cell의 viewModel 세팅해주기
         cell.viewModel = viewModel
+        cell.delegate = self
         return cell
     }
     
@@ -133,5 +145,35 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
         
         dismiss(animated: true)
     }
+    
+}
+// MARK: - SettingsViewCellDelegate
+
+extension SettingsViewController: SettingsViewCellDelegate {
+    func settingsCell(_ cell: SettingsViewCell, updateAgeRangeWith sender: UISlider) {
+        if sender == cell.minAgeSlider {
+            user.minSeekingAge = Int(sender.value)
+        } else {
+            user.maxSeekingAge = Int(sender.value)
+        }
+    }
+    
+    func settingsCell(_ cell: SettingsViewCell, updateUserDataWith updateValue: String, for section: SettingsSection) {
+        switch section {
+
+        case .name:
+            user.name = updateValue
+        case .profession:
+            user.profession = updateValue
+        case .age:
+            user.age = Int(updateValue) ?? user.age
+        case .bio:
+            user.bio = updateValue
+        case .ageRange:
+            break
+        }
+    }
+    
+
     
 }
