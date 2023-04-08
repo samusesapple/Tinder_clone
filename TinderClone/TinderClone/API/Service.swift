@@ -54,5 +54,17 @@ struct Service {
         }
     }
     
+    // [UPDATE] Firebase-Database에서 특정 UID에 해당되는 유저의 이미지 업데이트하기
+    static func saveUserData(user: User, completion: @escaping(Error?) -> Void) {
+        let data = ["uid": user.uid,
+                    "fullName": user.name,
+                    "imageURLs": user.imageURLs,
+                    "age": user.age,
+                    "bio": user.bio,
+                    "profession": user.profession,
+                    "minSeekingAge": user.minSeekingAge, "maxSeekingAge": user.maxSeekingAge] as [String : Any]
+        
+        COLLECTION_USERS.document(user.uid).setData(data, completion: completion)
+    }
     
 }

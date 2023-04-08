@@ -6,24 +6,27 @@
 //
 
 import UIKit
+import SDWebImage
 
 protocol SettingsHeaderViewDelegate: AnyObject {
     func settingsHeaderImageTapped(_ header: SettingsHeaderView, didSelect index: Int)
-    
 }
 
 class SettingsHeaderView: UIView {
     
     // MARK: - Properties
     
+    private let user: User
     weak var delegate: SettingsHeaderViewDelegate?
     
     var buttonsArray = [UIButton]()
     
     // MARK: - Lifecycle
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(user: User) {
+        self.user = user
+        
+        super.init(frame: .zero)
         backgroundColor = .systemGroupedBackground
         
         buttonsArray.append(createButton(0))
@@ -41,6 +44,8 @@ class SettingsHeaderView: UIView {
         
         addSubview(buttonStack)
         buttonStack.anchor(top: topAnchor, left: buttonsArray[0].rightAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16)
+        
+        loadUserPhotos()
     }
     
     required init?(coder: NSCoder) {
@@ -55,6 +60,16 @@ class SettingsHeaderView: UIView {
     }
     
     // MARK: - Helpers
+    
+    func loadUserPhotos() {
+        let imageURLs = user.imageURLs.map { URL(string: $0) }
+        
+        for (index, url) in imageURLs.enumerated() {
+            SDWebImageManager.shared().loadImage(with: url, options: .continueInBackground, progress: nil) { image, _, _, _, _, _ in
+                self.buttonsArray[index].setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+            }
+        }
+    }
     
     func createButton(_ index: Int) -> UIButton {
         let button = UIButton(type: .system)

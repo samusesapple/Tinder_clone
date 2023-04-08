@@ -12,7 +12,7 @@ struct User {
     var age: Int
     var email: String
     let uid: String
-    let profileImageURL: String   // 프로필이미지를 변경시, firebase의 기존 프로필 이미지 url 삭제 후 재생성
+    var imageURLs: [String]   // 프로필이미지를 변경시, firebase의 기존 프로필 이미지 url 삭제 후 재생성
     var profession: String
     var bio: String
     var minSeekingAge: Int
@@ -23,7 +23,7 @@ struct User {
         self.name = dictionary["fullName"] as? String ?? ""
         self.age = dictionary["age"] as? Int ?? 0
         self.email = dictionary["email"] as? String ?? ""
-        self.profileImageURL = dictionary["imageURL"] as? String ?? ""
+        self.imageURLs = dictionary["imageURLs"] as? [String] ?? [String]()
         self.uid = dictionary["uid"] as? String ?? ""
         self.profession = dictionary["profession"] as? String ?? ""
         self.bio = dictionary["bio"] as? String ?? ""

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 protocol SettingsViewControllerDelegate: AnyObject {
     func updateUserData(_ controller: SettingsViewController, userData: User)
@@ -16,7 +17,7 @@ class SettingsViewController: UITableViewController {
     // MARK: - Properties
     private var user: User // HomeVC에서 받은 use data를 받을 인스턴스
     
-    private let headerView = SettingsHeaderView()
+    private lazy var headerView = SettingsHeaderView(user: user)
     private let imagePicker = UIImagePickerController()
     private var imageIndex = 0
     
@@ -45,9 +46,29 @@ class SettingsViewController: UITableViewController {
     
     @objc func doneButtonTapped() {
         view.endEditing(true)
-        // API에 새로 담긴 user 정보 update + local앱에 user정보 update (다시 네트워킹 요청해서 user정보 불러오기 x)
-        delegate?.updateUserData(self, userData: user) 
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Saving Your Data"
+        hud.show(in: view)
         
+        // API에 새로 담긴 user 정보 update + local앱에 user정보 update (다시 네트워킹 요청해서 user정보 불러오기 x)
+        Service.saveUserData(user: user) { [weak self] error in
+            self?.delegate?.updateUserData(self!, userData: self!.user)
+        }
+
+        
+    }
+    
+    // MARK: - API
+    
+    func uploadImage(image: UIImage) {
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Loading Image.."
+        hud.show(in: view)
+        
+        Service.uploadImage(image: image) { imageURL in
+            self.user.imageURLs.append(imageURL)
+            hud.dismiss(animated: true)
+        }
     }
     
     // MARK: - Helpers
@@ -140,6 +161,7 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let selectedImage = info[.originalImage] as? UIImage else { return }
         
+        uploadImage(image: selectedImage)
         // 선택된 사진 업데이트 해야함
         setHeaderImage(selectedImage)
         

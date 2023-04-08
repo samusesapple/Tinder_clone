@@ -46,7 +46,7 @@ class CardView: UIView {
         
         configureGestureRecognizers()
         
-        // url구조체를 사용하여 이미지 캐싱 (매번 같은 이미지 데이터를 받아와야하는 번거로움 해소)
+            // url구조체를 사용하여 이미지 캐싱 (매번 같은 이미지 데이터를 받아와야하는 번거로움 해소)
         imageView.sd_setImage(with: viewModel.imageURL)
         
         infoLabel.attributedText = viewModel.userInfoText
