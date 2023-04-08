@@ -11,6 +11,12 @@ class SettingsViewCell: UITableViewCell {
     
     // MARK: - Properties
     
+    var viewModel: SettingsViewModel! {
+        didSet {
+            configureUI()
+        }
+    }
+    
     lazy var inputField: UITextField = {
         let tf = UITextField()
         tf.borderStyle = .none
@@ -30,12 +36,32 @@ class SettingsViewCell: UITableViewCell {
     lazy var minAgeSlider = createAgeRangeSlider()
     lazy var maxAgeSlider = createAgeRangeSlider()
     
+    var sliderStack = UIStackView()
+    
     // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        minAgeLabel.text = "Min: 18"
+        maxAgeLabel.text = "Max: 60"
+        
         addSubview(inputField)
         inputField.fillSuperview()
+        
+        // axis의 default값은 horizontal
+        let minSliderStack = UIStackView(arrangedSubviews: [minAgeLabel, minAgeSlider])
+        minSliderStack.spacing = 24
+        
+        let maxSliderStack = UIStackView(arrangedSubviews: [maxAgeLabel, maxAgeSlider])
+        maxSliderStack.spacing = 24
+        
+        sliderStack = UIStackView(arrangedSubviews: [minSliderStack, maxSliderStack])
+        sliderStack.axis = .vertical
+        sliderStack.spacing = 16
+        
+        addSubview(sliderStack)
+        sliderStack.centerY(inView: self)
+        sliderStack.anchor(left: leftAnchor, right: rightAnchor, paddingLeft: 24, paddingRight: 24)
     }
     
     required init?(coder: NSCoder) {
@@ -62,5 +88,11 @@ class SettingsViewCell: UITableViewCell {
         slider.addTarget(self, action: #selector(ageRangeDidChanged), for: .valueChanged)
         return slider
     }
+    
+    func configureUI() {
+        inputField.isHidden = viewModel.shouldHideInputField
+        sliderStack.isHidden = viewModel.shouldHideSlider
+    }
+    
     
 }

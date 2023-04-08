@@ -10,12 +10,22 @@ import UIKit
 class SettingsViewController: UITableViewController {
     
     // MARK: - Properties
+    private let user: User
     
     private let headerView = SettingsHeaderView()
     private let imagePicker = UIImagePickerController()
     private var imageIndex = 0
     
     // MARK: - Lifecycle
+    init(user: User) {
+        self.user = user
+        super.init(style: .plain)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +82,9 @@ extension SettingsViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsViewCell") as! SettingsViewCell
+        guard let section = SettingsSection(rawValue: indexPath.section) else { return cell }
+        let viewModel = SettingsViewModel(user: user, section: section)
+        cell.viewModel = viewModel
         return cell
     }
     

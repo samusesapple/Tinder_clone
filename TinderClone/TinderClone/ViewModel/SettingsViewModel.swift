@@ -32,6 +32,19 @@ enum SettingsSection: Int, CaseIterable {
 }
 
 struct SettingsViewModel {
+    private let user: User
+    private let section: SettingsSection
     
+    var shouldHideInputField: Bool {
+        return section == .ageRange
+    }
     
+    var shouldHideSlider: Bool {
+        return section != .ageRange
+    }
+    
+    init(user: User, section: SettingsSection) {
+        self.user = user
+        self.section = section
+    }
 }

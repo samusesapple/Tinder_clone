@@ -11,6 +11,7 @@ import Firebase
 class HomeViewController: UIViewController {
     
     // MARK: - Properties
+    private var user: User?
     
     private let topStackView = HomeNavigationStackView()
     private let bottomStackView = BottomControlsStackView()
@@ -34,7 +35,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         checkIfUserIsLoggedIn()
         configureUI()
-        //        logOut()
+        fetchUser()
         fetchWholeUsers()
     }
     
@@ -44,7 +45,7 @@ class HomeViewController: UIViewController {
         // 최근 유저의 uid가 있는지 확인 후, 있으면 해당되는 유저 데이터 받기
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Service.fetchUser(withUID: uid) { user in
-            print("fetch user OK - fetched user name : \(user.name)")
+            self.user = user
         }
     }
     
@@ -111,7 +112,8 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: HomeNavigationStackViewDelegate {
     func showSettings() {
-        let settingVC = SettingsViewController()
+        guard let user = self.user else { return }
+        let settingVC = SettingsViewController(user: user)
         let naviVC = UINavigationController(rootViewController: settingVC)
         naviVC.modalPresentationStyle = .fullScreen
         present(naviVC, animated: true)
