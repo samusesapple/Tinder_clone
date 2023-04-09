@@ -13,11 +13,17 @@ enum SwipeDirection: Int {
     case right = 1
 }
 
+protocol CardViewDelegate: AnyObject {
+    func showInfoView(_ view: CardView, wantsToShowProfile user: User)
+}
+
 class CardView: UIView {
     
     // MARK: - Properties
     private let gradientLayer = CAGradientLayer()
     private let barStackView = UIStackView()
+    
+    weak var delegate: CardViewDelegate?
     
     var viewModel: CardViewModel
     
@@ -37,6 +43,7 @@ class CardView: UIView {
     private lazy var infoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "info_icon").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleShowProfile), for: .touchUpInside)
         return button
     }()
     
@@ -110,6 +117,9 @@ class CardView: UIView {
         barStackView.arrangedSubviews[viewModel.index].backgroundColor = .white
     }
     
+    @objc func handleShowProfile() {
+        delegate?.showInfoView(self, wantsToShowProfile: viewModel.user)
+    }
     
     // MARK: - Helpers
     

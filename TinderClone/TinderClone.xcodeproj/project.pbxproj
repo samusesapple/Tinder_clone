@@ -33,6 +33,8 @@
 		F1DECAAB29D56CD0001C758F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DECAAA29D56CD0001C758F /* HomeViewController.swift */; };
 		F1DECAAD29D56FAE001C758F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DECAAC29D56FAE001C758F /* Extensions.swift */; };
 		F1DECAAF29D570DA001C758F /* HomeNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DECAAE29D570DA001C758F /* HomeNavigationStackView.swift */; };
+		F1EA639929E2B10600A064D9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EA639829E2B10600A064D9 /* ProfileViewController.swift */; };
+		F1EA639B29E2C87A00A064D9 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EA639A29E2C87A00A064D9 /* ProfileCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		F1DECAAA29D56CD0001C758F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F1DECAAC29D56FAE001C758F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = ../../../../../../Downloads/Extensions.swift; sourceTree = "<group>"; };
 		F1DECAAE29D570DA001C758F /* HomeNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationStackView.swift; sourceTree = "<group>"; };
+		F1EA639829E2B10600A064D9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F1EA639A29E2C87A00A064D9 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +172,7 @@
 				F1DECAAE29D570DA001C758F /* HomeNavigationStackView.swift */,
 				F14A47B129D7CEA100CB0BC4 /* BottomControlsStackView.swift */,
 				F12B1B8C29D7DCC600ED8F84 /* CardView.swift */,
+				F1EA639A29E2C87A00A064D9 /* ProfileCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 				F14A3EE829D96CA30045D363 /* Authentication */,
 				F1DECAAA29D56CD0001C758F /* HomeViewController.swift */,
 				F117F5CC29DFEE3800A44FCC /* SettingsViewController.swift */,
+				F1EA639829E2B10600A064D9 /* ProfileViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -342,11 +348,13 @@
 				F117F5D629E25E2D00A44FCC /* SettingsFooter.swift in Sources */,
 				F117F5C929DD6DE200A44FCC /* Service.swift in Sources */,
 				F117F5C729DD6DC000A44FCC /* AuthService.swift in Sources */,
+				F1EA639929E2B10600A064D9 /* ProfileViewController.swift in Sources */,
 				F1DECAAB29D56CD0001C758F /* HomeViewController.swift in Sources */,
 				F1D0FD0929DC279000AB1295 /* CustomTextField.swift in Sources */,
 				F117F5CF29DFF6AD00A44FCC /* SettingsHeaderView.swift in Sources */,
 				F1DECAAD29D56FAE001C758F /* Extensions.swift in Sources */,
 				F14A3EE729D95BAC0045D363 /* CardViewModel.swift in Sources */,
+				F1EA639B29E2C87A00A064D9 /* ProfileCell.swift in Sources */,
 				F14A3EEA29D96CBB0045D363 /* LoginController.swift in Sources */,
 				F117F5D329E011D500A44FCC /* SettingsViewModel.swift in Sources */,
 			);
