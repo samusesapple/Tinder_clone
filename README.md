@@ -8,7 +8,7 @@
 ### 목적 
 ---
 * MVVM 디자인패턴의 적용 및 이해
-* Firebase로 유저 데이터 다루기
+* Firebase 다루기 (Auth로 유저 로그인 기능 구현 포함)
 * 오픈라이브러리 SDWebImage, JGProgressHUD 사용하기
 * UIPanGestureRecognizer 다루기
 * 실시간 채팅 기능 구현하기 
