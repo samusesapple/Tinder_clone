@@ -28,8 +28,8 @@ class HomeViewController: UIViewController {
     
     private let deckView: UIView = {
         let view = UIView()
-        view.backgroundColor = .blue
-        view.layer.cornerRadius = 5
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 10
         return view
     }()
     

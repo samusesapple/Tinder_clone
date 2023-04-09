@@ -17,6 +17,7 @@ class CardView: UIView {
     
     // MARK: - Properties
     private let gradientLayer = CAGradientLayer()
+    private let barStackView = UIStackView()
     
     var viewModel: CardViewModel
     
@@ -45,19 +46,18 @@ class CardView: UIView {
         super.init(frame: .zero)
         
         configureGestureRecognizers()
-        
             // url구조체를 사용하여 이미지 캐싱 (매번 같은 이미지 데이터를 받아와야하는 번거로움 해소)
         imageView.sd_setImage(with: viewModel.imageURL)
         
         infoLabel.attributedText = viewModel.userInfoText
         
-        backgroundColor = .orange
         layer.cornerRadius = 10
         clipsToBounds = true
         
         addSubview(imageView)
         imageView.fillSuperview()
         configureGradient()
+        configureBarStackView()
         
         addSubview(infoLabel)
         infoLabel.anchor(left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingLeft: 16, paddingBottom: 16, paddingRight: 16)
@@ -102,7 +102,12 @@ class CardView: UIView {
         } else {
             viewModel.showPreviousPhoto()
         }
-        imageView.image = viewModel.imageToShow
+        
+//        imageView.image = viewModel.imageToShow
+        imageView.sd_setImage(with: viewModel.imageURL)
+        
+        barStackView.arrangedSubviews.forEach { $0.backgroundColor = .barDeselectedColor }
+        barStackView.arrangedSubviews[viewModel.index].backgroundColor = .white
     }
     
     
@@ -148,4 +153,19 @@ class CardView: UIView {
         }
     }
 
+    func configureBarStackView() {
+        (0..<viewModel.imageURLs.count).forEach { _ in
+            let barView = UIView()
+            barView.backgroundColor = .barDeselectedColor
+            barStackView.addArrangedSubview(barView)
+        }
+        barStackView.arrangedSubviews.first?.backgroundColor = .white
+        
+        addSubview(barStackView)
+        barStackView.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingRight: 8, height: 4)
+        
+        barStackView.spacing = 4
+        barStackView.distribution = .fillEqually
+    }
+    
 }
