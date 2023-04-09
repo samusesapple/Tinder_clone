@@ -54,7 +54,7 @@ struct Service {
         }
     }
     
-    // [UPDATE] Firebase-Database에서 특정 UID에 해당되는 유저의 이미지 업데이트하기
+    // [UPDATE] Firebase-Database에서 유저의 이미지 업데이트, 업로드하기
     static func saveUserData(user: User, completion: @escaping(Error?) -> Void) {
         let data = ["uid": user.uid,
                     "fullName": user.name,

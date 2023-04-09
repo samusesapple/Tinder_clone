@@ -10,6 +10,7 @@ import JGProgressHUD
 
 protocol SettingsViewControllerDelegate: AnyObject {
     func updateUserData(_ controller: SettingsViewController, userData: User)
+    func settingsVCLogout(_ controller: SettingsViewController)
 }
 
 class SettingsViewController: UITableViewController {
@@ -18,6 +19,7 @@ class SettingsViewController: UITableViewController {
     private var user: User // HomeVC에서 받은 use data를 받을 인스턴스
     
     private lazy var headerView = SettingsHeaderView(user: user)
+    private let footerView = SettingsFooter()
     private let imagePicker = UIImagePickerController()
     private var imageIndex = 0
     
@@ -94,6 +96,10 @@ class SettingsViewController: UITableViewController {
         tableView.backgroundColor = .systemGroupedBackground
         tableView.register(SettingsViewCell.self, forCellReuseIdentifier: "SettingsViewCell")
         headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 300)
+        
+        tableView.tableFooterView = footerView
+        footerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 88)
+        footerView.delegate = self
     }
     
     
@@ -196,6 +202,13 @@ extension SettingsViewController: SettingsViewCellDelegate {
         }
     }
     
+}
 
+extension SettingsViewController: SettingsFooterDelegate {
+    func handleLogout() {
+        delegate?.settingsVCLogout(self)
+        print("로그아웃 완료")
+    }
+    
     
 }

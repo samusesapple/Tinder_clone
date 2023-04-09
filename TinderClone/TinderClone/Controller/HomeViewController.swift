@@ -47,7 +47,6 @@ class HomeViewController: UIViewController {
     // MARK: - API
     
     func fetchUser() {
-        
         // 최근 유저의 uid가 있는지 확인 후, 있으면 해당되는 유저 데이터 받기
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Service.fetchUser(withUID: uid) { user in
@@ -95,7 +94,6 @@ class HomeViewController: UIViewController {
         mainStack.isLayoutMarginsRelativeArrangement = true
         mainStack.layoutMargins = .init(top: 0, left: 12, bottom: 0, right: 12)
         mainStack.bringSubviewToFront(deckView)
-        
     }
     
     func configureCards() {
@@ -111,7 +109,7 @@ class HomeViewController: UIViewController {
             let loginController = LoginController()
             let nav = UINavigationController(rootViewController: loginController)
             nav.modalPresentationStyle = .fullScreen
-            self.present(nav, animated: false)
+            self.present(nav, animated: true)
         }
     }
     
@@ -134,17 +132,20 @@ extension HomeViewController: HomeNavigationStackViewDelegate {
         print("show Messages")
     }
     
-    
 }
 
 // MARK: - SettingsViewControllerDelegate
 
 extension HomeViewController: SettingsViewControllerDelegate {
+    
     func updateUserData(_ controller: SettingsViewController, userData: User) {
         controller.dismiss(animated: true)
         self.user = userData
     }
     
-    
+    func settingsVCLogout(_ controller: SettingsViewController) {
+        controller.dismiss(animated: true)
+        logOut()
+    }
     
 }

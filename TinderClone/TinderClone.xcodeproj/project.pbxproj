@@ -15,6 +15,7 @@
 		F117F5CF29DFF6AD00A44FCC /* SettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117F5CE29DFF6AD00A44FCC /* SettingsHeaderView.swift */; };
 		F117F5D129E00C9400A44FCC /* SettingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117F5D029E00C9400A44FCC /* SettingsViewCell.swift */; };
 		F117F5D329E011D500A44FCC /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117F5D229E011D500A44FCC /* SettingsViewModel.swift */; };
+		F117F5D629E25E2D00A44FCC /* SettingsFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F117F5D529E25E2D00A44FCC /* SettingsFooter.swift */; };
 		F122E95629DD333600937C08 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F122E95529DD333600937C08 /* AuthenticationViewModel.swift */; };
 		F12B1B8D29D7DCC600ED8F84 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12B1B8C29D7DCC600ED8F84 /* CardView.swift */; };
 		F14A3EE529D95A660045D363 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3EE429D95A660045D363 /* User.swift */; };
@@ -45,6 +46,7 @@
 		F117F5CE29DFF6AD00A44FCC /* SettingsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeaderView.swift; sourceTree = "<group>"; };
 		F117F5D029E00C9400A44FCC /* SettingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewCell.swift; sourceTree = "<group>"; };
 		F117F5D229E011D500A44FCC /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		F117F5D529E25E2D00A44FCC /* SettingsFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFooter.swift; sourceTree = "<group>"; };
 		F122E95529DD333600937C08 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		F12B1B8C29D7DCC600ED8F84 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		F14A3EE429D95A660045D363 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -93,6 +95,16 @@
 				6D4C0C7A6741E20A69D1BBEB /* Pods_TinderClone.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F117F5D429E25DC600A44FCC /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F117F5CE29DFF6AD00A44FCC /* SettingsHeaderView.swift */,
+				F117F5D029E00C9400A44FCC /* SettingsViewCell.swift */,
+				F117F5D529E25E2D00A44FCC /* SettingsFooter.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		F14A3EE829D96CA30045D363 /* Authentication */ = {
@@ -152,11 +164,10 @@
 		F1DECAA529D56B8E001C758F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F117F5D429E25DC600A44FCC /* Settings */,
 				F1DECAAE29D570DA001C758F /* HomeNavigationStackView.swift */,
 				F14A47B129D7CEA100CB0BC4 /* BottomControlsStackView.swift */,
 				F12B1B8C29D7DCC600ED8F84 /* CardView.swift */,
-				F117F5CE29DFF6AD00A44FCC /* SettingsHeaderView.swift */,
-				F117F5D029E00C9400A44FCC /* SettingsViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -328,6 +339,7 @@
 				F1DECAAF29D570DA001C758F /* HomeNavigationStackView.swift in Sources */,
 				F14A3EE529D95A660045D363 /* User.swift in Sources */,
 				F1DECA9329D56B60001C758F /* SceneDelegate.swift in Sources */,
+				F117F5D629E25E2D00A44FCC /* SettingsFooter.swift in Sources */,
 				F117F5C929DD6DE200A44FCC /* Service.swift in Sources */,
 				F117F5C729DD6DC000A44FCC /* AuthService.swift in Sources */,
 				F1DECAAB29D56CD0001C758F /* HomeViewController.swift in Sources */,
