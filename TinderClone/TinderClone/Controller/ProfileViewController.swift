@@ -34,6 +34,27 @@ class ProfileViewController: UIViewController {
         return button
     }()
     
+    private let infoLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.text = "Sam - 27"
+        return label
+    }()
+    
+    private let professionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "iOS Programmer"
+        label.font = UIFont.systemFont(ofSize: 20)
+        return label
+    }()
+    
+    private let bioLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.text = "I love Swift!"
+        return label
+    }()
     
     // MARK: - Lifecycle
     
