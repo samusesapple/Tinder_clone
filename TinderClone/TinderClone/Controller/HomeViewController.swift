@@ -11,19 +11,15 @@ import Firebase
 class HomeViewController: UIViewController {
     
     // MARK: - Properties
-    private var user: User? {
-        didSet {
-            print("HomeVC - \(String(describing: user?.name))")
-        }
-    }
+    private var user: User?
     
     private let topStackView = HomeNavigationStackView()
     private let bottomStackView = BottomControlsStackView()
+    private var topCardView: CardView?
+    private var cardViews = [CardView]()
     
     private var viewModels = [CardViewModel]() {
-        didSet {
-            configureCards()
-        }
+        didSet { configureCards() }
     }
     
     private let deckView: UIView = {
@@ -83,6 +79,7 @@ class HomeViewController: UIViewController {
         view.backgroundColor = .white
         navigationController?.navigationBar.isHidden = true
         topStackView.delegate = self
+        bottomStackView.delegate = self
         
         
         let mainStack = UIStackView(arrangedSubviews: [topStackView, deckView, bottomStackView])
@@ -103,6 +100,8 @@ class HomeViewController: UIViewController {
             deckView.addSubview(cardView)
             cardView.fillSuperview()
         }
+        cardViews = deckView.subviews.map{ ($0 as? CardView)! }
+        topCardView = cardViews.last
     }
     
     func presentLoginController() {
@@ -112,6 +111,23 @@ class HomeViewController: UIViewController {
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true)
         }
+    }
+    
+    func performSwipeAnimation(shouldLike: Bool) {
+        let translation: CGFloat = shouldLike ? 500 : -500
+        
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
+            self.topCardView?.frame = CGRect(x: translation, y: 0, width:
+                                                (self.topCardView?.frame.width)!,
+                                             height: (self.topCardView?.frame.height)!)
+        }) { _ in
+            self.topCardView?.removeFromSuperview()
+            
+            guard !self.cardViews.isEmpty else { return }
+            self.cardViews.remove(at: self.cardViews.count - 1)
+            self.topCardView = self.cardViews.last
+        }
+
     }
     
 }
@@ -157,6 +173,24 @@ extension HomeViewController: CardViewDelegate {
         let profileVC = ProfileViewController(user: user)
         profileVC.modalPresentationStyle = .fullScreen
         present(profileVC, animated: true)
+    }
+    
+}
+
+extension HomeViewController: BottomControlsStackViewDelegate {
+    func handleRefresh() {
+        guard let topCard = topCardView else { return }
+        
+    }
+    
+    func handleDislike() {
+        print("dislike")
+        performSwipeAnimation(shouldLike: false)
+    }
+    
+    func handleLike() {
+        print("like")
+        performSwipeAnimation(shouldLike: true)
     }
     
     

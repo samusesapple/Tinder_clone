@@ -26,12 +26,12 @@
 		F1828F1F29DD593F00C38391 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1828F1E29DD593F00C38391 /* GoogleService-Info.plist */; };
 		F1D0FD0929DC279000AB1295 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0FD0829DC279000AB1295 /* CustomTextField.swift */; };
 		F1D0FD0B29DC2A4900AB1295 /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0FD0A29DC2A4900AB1295 /* AuthButton.swift */; };
+		F1D5902029E5477900009EAB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D5901F29E5477900009EAB /* Extensions.swift */; };
 		F1DECA9129D56B60001C758F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DECA9029D56B60001C758F /* AppDelegate.swift */; };
 		F1DECA9329D56B60001C758F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DECA9229D56B60001C758F /* SceneDelegate.swift */; };
 		F1DECA9A29D56B61001C758F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1DECA9929D56B61001C758F /* Assets.xcassets */; };
 		F1DECA9D29D56B61001C758F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1DECA9B29D56B61001C758F /* LaunchScreen.storyboard */; };
 		F1DECAAB29D56CD0001C758F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DECAAA29D56CD0001C758F /* HomeViewController.swift */; };
-		F1DECAAD29D56FAE001C758F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DECAAC29D56FAE001C758F /* Extensions.swift */; };
 		F1DECAAF29D570DA001C758F /* HomeNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DECAAE29D570DA001C758F /* HomeNavigationStackView.swift */; };
 		F1EA639929E2B10600A064D9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EA639829E2B10600A064D9 /* ProfileViewController.swift */; };
 		F1EA639B29E2C87A00A064D9 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EA639A29E2C87A00A064D9 /* ProfileCell.swift */; };
@@ -61,6 +61,7 @@
 		F1828F1E29DD593F00C38391 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F1D0FD0829DC279000AB1295 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		F1D0FD0A29DC2A4900AB1295 /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
+		F1D5901F29E5477900009EAB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F1DECA8D29D56B60001C758F /* TinderClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1DECA9029D56B60001C758F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1DECA9229D56B60001C758F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,7 +69,6 @@
 		F1DECA9C29D56B61001C758F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F1DECA9E29D56B61001C758F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1DECAAA29D56CD0001C758F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		F1DECAAC29D56FAE001C758F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = ../../../../../../Downloads/Extensions.swift; sourceTree = "<group>"; };
 		F1DECAAE29D570DA001C758F /* HomeNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationStackView.swift; sourceTree = "<group>"; };
 		F1EA639829E2B10600A064D9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F1EA639A29E2C87A00A064D9 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
@@ -217,9 +217,9 @@
 		F1DECAA929D56C0E001C758F /* Utilis */ = {
 			isa = PBXGroup;
 			children = (
-				F1DECAAC29D56FAE001C758F /* Extensions.swift */,
 				F1D0FD0829DC279000AB1295 /* CustomTextField.swift */,
 				F1D0FD0A29DC2A4900AB1295 /* AuthButton.swift */,
+				F1D5901F29E5477900009EAB /* Extensions.swift */,
 			);
 			path = Utilis;
 			sourceTree = "<group>";
@@ -360,7 +360,7 @@
 				F1DECAAB29D56CD0001C758F /* HomeViewController.swift in Sources */,
 				F1D0FD0929DC279000AB1295 /* CustomTextField.swift in Sources */,
 				F117F5CF29DFF6AD00A44FCC /* SettingsHeaderView.swift in Sources */,
-				F1DECAAD29D56FAE001C758F /* Extensions.swift in Sources */,
+				F1D5902029E5477900009EAB /* Extensions.swift in Sources */,
 				F14A3EE729D95BAC0045D363 /* CardViewModel.swift in Sources */,
 				F1EA639B29E2C87A00A064D9 /* ProfileCell.swift in Sources */,
 				F14A3EEA29D96CBB0045D363 /* LoginController.swift in Sources */,
