@@ -73,6 +73,15 @@ class SettingsViewController: UITableViewController {
         }
     }
     
+    func updateImage(image: UIImage) {
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Loading Image.."
+        hud.show(in: view)
+        
+//        Service.
+    }
+    
+    
     // MARK: - Helpers
     
     func setHeaderImage(_ image: UIImage) {

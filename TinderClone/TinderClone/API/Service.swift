@@ -36,6 +36,20 @@ struct Service {
         }
     }
     
+    static func setSwipe(forUser user: User, isLike: Bool) {
+        guard let uid = Auth.auth().currentUser?.uid else { return}
+        
+        COLLECTION_SWIPES.document(uid).getDocument { snapshot, error in
+            let data = [user.uid: isLike]
+            
+            if snapshot?.exists == true {
+                COLLECTION_SWIPES.document(uid).updateData(data)
+            } else {
+                COLLECTION_SWIPES.document(uid).setData(data)
+            }
+        }
+    }
+    
     static func fetchWholeUsers(completion: @escaping ([User]) -> Void) {
         var users = [User]()
         
@@ -54,7 +68,8 @@ struct Service {
         }
     }
     
-    // [UPDATE] Firebase-Database에서 유저의 이미지 업데이트, 업로드하기
+    
+    // [UPDATE] Firebase-Database에서 유저의 정보 업데이트, 업로드하기
     static func saveUserData(user: User, completion: @escaping(Error?) -> Void) {
         let data = ["uid": user.uid,
                     "fullName": user.name,
@@ -66,5 +81,16 @@ struct Service {
         
         COLLECTION_USERS.document(user.uid).setData(data, completion: completion)
     }
-    
+ 
+//    static func updateUserImage(forUser user: User, previousImageURL: String, newImage: UIImage) {
+//        guard let uid = Auth.auth().currentUser?.uid else { return }
+//        COLLECTION_USERS.document(uid).getDocument { snapshot, error in
+//            let previousData = ["imageURLs": previousImageURL]
+//            if snapshot?.exists == true {
+//                COLLECTION_SWIPES.document(uid).updateData(data)
+//            } else {
+//                COLLECTION_SWIPES.document(uid).setData(data)
+//            }
+//        }
+//    }
 }

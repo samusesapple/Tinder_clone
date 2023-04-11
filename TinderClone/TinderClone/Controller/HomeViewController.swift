@@ -179,18 +179,22 @@ extension HomeViewController: CardViewDelegate {
 
 extension HomeViewController: BottomControlsStackViewDelegate {
     func handleRefresh() {
-        guard let topCard = topCardView else { return }
+        print(#function)
         
     }
     
     func handleDislike() {
-        print("dislike")
+        guard let topCard = topCardView else { return }
+        
         performSwipeAnimation(shouldLike: false)
+        Service.setSwipe(forUser: topCard.viewModel.user, isLike: false)
     }
     
     func handleLike() {
-        print("like")
+        guard let topCard = topCardView else { return }
+        
         performSwipeAnimation(shouldLike: true)
+        Service.setSwipe(forUser: topCard.viewModel.user, isLike: true)
     }
     
     

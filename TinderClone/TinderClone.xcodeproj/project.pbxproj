@@ -209,7 +209,6 @@
 			children = (
 				F117F5C629DD6DC000A44FCC /* AuthService.swift */,
 				F117F5C829DD6DE200A44FCC /* Service.swift */,
-				F117F5CA29DEA09800A44FCC /* Constants.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -220,6 +219,7 @@
 				F1D0FD0829DC279000AB1295 /* CustomTextField.swift */,
 				F1D0FD0A29DC2A4900AB1295 /* AuthButton.swift */,
 				F1D5901F29E5477900009EAB /* Extensions.swift */,
+				F117F5CA29DEA09800A44FCC /* Constants.swift */,
 			);
 			path = Utilis;
 			sourceTree = "<group>";
