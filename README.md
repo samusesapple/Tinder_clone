@@ -11,5 +11,9 @@
 * Firebase 다루기 (Auth로 유저 로그인 기능 구현 포함)
 * 오픈라이브러리 SDWebImage, JGProgressHUD 사용하기
 * UIPanGestureRecognizer 다루기
-* 실시간 채팅 기능 구현하기 
+<br>
+
+### 문제 및 해결과정
+---
+#### 
 
