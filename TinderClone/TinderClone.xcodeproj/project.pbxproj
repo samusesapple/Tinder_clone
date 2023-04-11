@@ -35,6 +35,7 @@
 		F1DECAAF29D570DA001C758F /* HomeNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DECAAE29D570DA001C758F /* HomeNavigationStackView.swift */; };
 		F1EA639929E2B10600A064D9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EA639829E2B10600A064D9 /* ProfileViewController.swift */; };
 		F1EA639B29E2C87A00A064D9 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EA639A29E2C87A00A064D9 /* ProfileCell.swift */; };
+		F1EA639D29E5074900A064D9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EA639C29E5074900A064D9 /* ProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		F1DECAAE29D570DA001C758F /* HomeNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationStackView.swift; sourceTree = "<group>"; };
 		F1EA639829E2B10600A064D9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F1EA639A29E2C87A00A064D9 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		F1EA639C29E5074900A064D9 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 				F14A3EE629D95BAC0045D363 /* CardViewModel.swift */,
 				F122E95529DD333600937C08 /* AuthenticationViewModel.swift */,
 				F117F5D229E011D500A44FCC /* SettingsViewModel.swift */,
+				F1EA639C29E5074900A064D9 /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				F1DECA9329D56B60001C758F /* SceneDelegate.swift in Sources */,
 				F117F5D629E25E2D00A44FCC /* SettingsFooter.swift in Sources */,
 				F117F5C929DD6DE200A44FCC /* Service.swift in Sources */,
+				F1EA639D29E5074900A064D9 /* ProfileViewModel.swift in Sources */,
 				F117F5C729DD6DC000A44FCC /* AuthService.swift in Sources */,
 				F1EA639929E2B10600A064D9 /* ProfileViewController.swift in Sources */,
 				F1DECAAB29D56CD0001C758F /* HomeViewController.swift in Sources */,

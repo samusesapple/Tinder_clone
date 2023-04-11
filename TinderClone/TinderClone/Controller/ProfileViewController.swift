@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ProfileViewController: UIViewController {
 
     // MARK: - Properties
     private let user: User
+    
+    private lazy var viewModel = ProfileViewModel(user: user)
     
     private lazy var collectionView: UICollectionView = {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width + 100)
@@ -37,7 +40,6 @@ class ProfileViewController: UIViewController {
     private let infoLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "Sam - 27"
         return label
     }()
     
@@ -56,6 +58,25 @@ class ProfileViewController: UIViewController {
         return label
     }()
     
+    private lazy var dislikeButton: UIButton = {
+        let button = createButton(withImage: #imageLiteral(resourceName: "dismiss_circle"))
+        button.addTarget(self, action: #selector(dislikeButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var superlikeButton: UIButton = {
+        let button = createButton(withImage: #imageLiteral(resourceName: "super_like_circle"))
+        button.addTarget(self, action: #selector(superlikeButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var likeButton: UIButton = {
+        let button = createButton(withImage: #imageLiteral(resourceName: "like_circle"))
+        button.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    
     // MARK: - Lifecycle
     
     init(user: User) {
@@ -70,16 +91,35 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        loadUserData()
     }
     
     
     // MARK: - Actions
+    
+    @objc func dislikeButtonTapped() {
+        
+    }
+    
+    @objc func superlikeButtonTapped() {
+        
+    }
+    
+    @objc func likeButtonTapped() {
+        
+    }
     
     @objc func dismissButtonTapped() {
         dismiss(animated: true)
     }
     
     // MARK: - Helpers
+    
+    func loadUserData() {
+        infoLabel.attributedText = viewModel.userDetailsAttributedString
+        professionLabel.text = viewModel.professionString
+        bioLabel.text = viewModel.bioString
+    }
     
     func configureUI() {
         view.backgroundColor = .white
@@ -88,27 +128,48 @@ class ProfileViewController: UIViewController {
         view.addSubview(dismissButton)
         dismissButton.setDimensions(height: 40, width: 40)
         dismissButton.anchor(top: collectionView.bottomAnchor, right: view.rightAnchor, paddingTop: -20, paddingRight: 16)
+        
+        let infoStack = UIStackView(arrangedSubviews: [infoLabel, professionLabel, bioLabel])
+        infoStack.axis = .vertical
+        infoStack.spacing = 4
+        
+        view.addSubview(infoStack)
+        infoStack.anchor(top: collectionView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 12, paddingLeft: 12, paddingRight: 12)
+        
+        configureButtonControls()
     }
-
+    
+    func configureButtonControls() {
+        let stack = UIStackView(arrangedSubviews: [dislikeButton, superlikeButton, likeButton])
+        stack.distribution = .fillEqually
+        
+        view.addSubview(stack)
+        stack.spacing = -32
+        stack.setDimensions(height: 80, width: 300)
+        stack.centerX(inView: view)
+        stack.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, paddingBottom: 32)
+    }
+    
+    func createButton(withImage image: UIImage) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFill
+        return button
+    }
+    
 }
 
 // MARK: - UICollectionViewDataSource
 
 extension ProfileViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return user.imageURLs.count
+        return viewModel.imageCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
         
-        if indexPath.row == 0 {
-            cell.backgroundColor = .blue
-        } else if indexPath.row == 1 {
-            cell.backgroundColor = .darkGray
-        } else {
-            cell.backgroundColor = .cyan
-        }
+        cell.imageView.sd_setImage(with: viewModel.imageURLArray[indexPath.row])
         
         return cell
     }
