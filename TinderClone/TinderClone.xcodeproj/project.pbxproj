@@ -36,6 +36,7 @@
 		F1EA639929E2B10600A064D9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EA639829E2B10600A064D9 /* ProfileViewController.swift */; };
 		F1EA639B29E2C87A00A064D9 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EA639A29E2C87A00A064D9 /* ProfileCell.swift */; };
 		F1EA639D29E5074900A064D9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EA639C29E5074900A064D9 /* ProfileViewModel.swift */; };
+		F1EA639F29E5117000A064D9 /* SegmentedBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EA639E29E5117000A064D9 /* SegmentedBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		F1EA639829E2B10600A064D9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F1EA639A29E2C87A00A064D9 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		F1EA639C29E5074900A064D9 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		F1EA639E29E5117000A064D9 /* SegmentedBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 				F14A47B129D7CEA100CB0BC4 /* BottomControlsStackView.swift */,
 				F12B1B8C29D7DCC600ED8F84 /* CardView.swift */,
 				F1EA639A29E2C87A00A064D9 /* ProfileCell.swift */,
+				F1EA639E29E5117000A064D9 /* SegmentedBarView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				F1DECA9329D56B60001C758F /* SceneDelegate.swift in Sources */,
 				F117F5D629E25E2D00A44FCC /* SettingsFooter.swift in Sources */,
 				F117F5C929DD6DE200A44FCC /* Service.swift in Sources */,
+				F1EA639F29E5117000A064D9 /* SegmentedBarView.swift in Sources */,
 				F1EA639D29E5074900A064D9 /* ProfileViewModel.swift in Sources */,
 				F117F5C729DD6DC000A44FCC /* AuthService.swift in Sources */,
 				F1EA639929E2B10600A064D9 /* ProfileViewController.swift in Sources */,

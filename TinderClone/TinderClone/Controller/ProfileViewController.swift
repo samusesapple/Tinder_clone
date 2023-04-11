@@ -30,6 +30,14 @@ class ProfileViewController: UIViewController {
         return cv
     }()
     
+    private let blurView: UIVisualEffectView = {
+        let blur = UIBlurEffect(style: .dark)
+        let view = UIVisualEffectView(effect: blur)
+        return view
+    }()
+    
+    private lazy var barStackView: SegmentedBarView = SegmentedBarView(numberOfSegment: viewModel.imageCount)
+    
     private let dismissButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "dismiss_down_arrow").withRenderingMode(.alwaysOriginal), for: .normal)
@@ -136,7 +144,16 @@ class ProfileViewController: UIViewController {
         view.addSubview(infoStack)
         infoStack.anchor(top: collectionView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 12, paddingLeft: 12, paddingRight: 12)
         
+        view.addSubview(blurView)
+        blurView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.topAnchor, right: view.rightAnchor)
+        
         configureButtonControls()
+        configureBarStackView()
+    }
+    
+    func configureBarStackView() {
+        view.addSubview(barStackView)
+        barStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingRight: 8, height: 4)
     }
     
     func configureButtonControls() {
@@ -174,13 +191,14 @@ extension ProfileViewController: UICollectionViewDataSource {
         return cell
     }
     
-    
 }
 
 // MARK: - UICollectionViewDelegate
 
 extension ProfileViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        barStackView.setHighlighted(index: indexPath.row)
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
