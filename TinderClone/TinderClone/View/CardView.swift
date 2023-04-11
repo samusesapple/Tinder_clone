@@ -149,6 +149,13 @@ class CardView: UIView {
         let shouldDismissCard = abs(sender.translation(in: nil).x) > 100
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
             if shouldDismissCard { // 많이 옆으로 swipe하면,
+                if direction == .right {
+                    Service.setSwipe(forUser: self.viewModel.user, isLike: true)
+                    print("like - \(self.viewModel.user)")
+                } else {
+                    Service.setSwipe(forUser: self.viewModel.user, isLike: false)
+                    print("dislike - \(self.viewModel.user)")
+                }
                 let xTransition = CGFloat(direction.rawValue) * 1000
                 let offScreenTransform = self.transform.translatedBy(x: xTransition, y: 0)
                 self.transform = offScreenTransform
