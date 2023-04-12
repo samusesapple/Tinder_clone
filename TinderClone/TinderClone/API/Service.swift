@@ -36,17 +36,37 @@ struct Service {
         }
     }
     
-    static func saveSwipe(forUser user: User, isLike: Bool) {
-        guard let uid = Auth.auth().currentUser?.uid else { return}
+    // like 여부 저장 후, 쌍방향 like인지 체크
+    static func saveSwipe(forUser user: User, isLike: Bool, completion: ((Error?) -> Void)?) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         
+        // 현재 접속중인 유저 데이터에 [상대방uid : isLike] 형태로 된 데이터
         COLLECTION_SWIPES.document(uid).getDocument { snapshot, error in
             let data = [user.uid: isLike]
-            
+           
+            // 해당되는 데이터 존재하면, 업데이트 / 없으면 새로운 데이터 생성
             if snapshot?.exists == true {
-                COLLECTION_SWIPES.document(uid).updateData(data)
+                COLLECTION_SWIPES.document(uid).updateData(data, completion: completion)
             } else {
-                COLLECTION_SWIPES.document(uid).setData(data)
+                COLLECTION_SWIPES.document(uid).setData(data, completion: completion)
             }
+        }
+    }
+    
+    static func checkIfMatchExists(forUser user: User, completion: @escaping(Bool) -> Void) {
+        // 현재 접속된 유저의 uid
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        
+        // '상대방 uid'로 상대방 스냅샷 데이터 받기
+        COLLECTION_SWIPES.document(user.uid).getDocument { snapshot, error in
+            guard error == nil else { return }
+            
+            // 데이터 있는지 확인
+            guard let data = snapshot?.data() else { return }
+            // 상대방 데이터에 접속된 유저의 uid에 해당되는 swipe데이터를 -> Bool타입캐스팅해서 받기 (ture/false)
+            guard let didMatch = data[currentUid] as? Bool else { return }
+            print(didMatch)
+            completion(didMatch)
         }
     }
     

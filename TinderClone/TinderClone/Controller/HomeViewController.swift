@@ -73,6 +73,19 @@ class HomeViewController: UIViewController {
         }
     }
     
+    func saveSwipeAndCheckMatch(forUser user: User, didLiked: Bool) {
+        Service.saveSwipe(forUser: user, isLike: didLiked) { error in
+            self.topCardView = self.cardViews.last
+            
+            // didLiked가 참인 경우에만 상대방의 매치 정보 확인
+            guard didLiked == true else { return }
+            
+            Service.checkIfMatchExists(forUser: user) { didMatch in
+                self.presentMatchView(matchUser: user)
+            }
+        }
+    }
+    
     // MARK: - Helpers
     
     func configureUI() {
@@ -112,6 +125,13 @@ class HomeViewController: UIViewController {
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true)
         }
+    }
+    
+    func presentMatchView(matchUser: User) {
+        guard let currentUser = self.user else { return }
+        let matchView = MatchView(currentUser: currentUser, matchedUser: matchUser)
+        view.addSubview(matchView)
+        matchView.fillSuperview()
     }
     
     func performSwipeAnimation(shouldLike: Bool) {
@@ -174,7 +194,7 @@ extension HomeViewController: CardViewDelegate {
         self.cardViews.removeAll(where: {view == $0}) // views배열에서 view와 일치하는 view 제거
         
         guard let user = topCardView?.viewModel.user else { return }
-        Service.saveSwipe(forUser: user, isLike: didLikeUser)
+        saveSwipeAndCheckMatch(forUser: user, didLiked: didLikeUser)
         
         self.topCardView = cardViews.last // cardViews의 맨 마지막에 있는 카드를 topCardView에 두기 (앞으로 끌어와서 보여줘서 다음 cardView 세팅)
     }
@@ -199,14 +219,14 @@ extension HomeViewController: BottomControlsStackViewDelegate {
         guard let topCard = topCardView else { return }
         
         performSwipeAnimation(shouldLike: false)
-        Service.saveSwipe(forUser: topCard.viewModel.user, isLike: false)
+        Service.saveSwipe(forUser: topCard.viewModel.user, isLike: false, completion: nil)
     }
     
     func handleLike() {
         guard let topCard = topCardView else { return }
         
         performSwipeAnimation(shouldLike: true)
-        Service.saveSwipe(forUser: topCard.viewModel.user, isLike: true)
+        saveSwipeAndCheckMatch(forUser: topCard.viewModel.user, didLiked: true)
     }
 }
 
@@ -214,14 +234,14 @@ extension HomeViewController: BottomControlsStackViewDelegate {
 extension HomeViewController: ProfileViewControllerDelegate {
     func profileController(_ controller: ProfileViewController, didLikeUser user: User) {
         controller.dismiss(animated: true) {
-            Service.saveSwipe(forUser: user, isLike: true)
+            self.saveSwipeAndCheckMatch(forUser: user, didLiked: false)
             self.performSwipeAnimation(shouldLike: true)
         }
     }
     
     func profileController(_ controller: ProfileViewController, didDislikeUser user: User) {
         controller.dismiss(animated: true) {
-            Service.saveSwipe(forUser: user, isLike: false)
+            Service.saveSwipe(forUser: user, isLike: false, completion: nil)
             self.performSwipeAnimation(shouldLike: false)
         }
     }
