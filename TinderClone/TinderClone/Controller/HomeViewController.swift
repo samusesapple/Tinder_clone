@@ -41,8 +41,8 @@ class HomeViewController: UIViewController {
     
     // MARK: - API
     
-    func fetchWholeUsers() {
-        Service.fetchWholeUsers { users in
+    func fetchWholeUsers(forCurrentUser user: User) {
+        Service.fetchWholeUsers(forCurrentUser: user) { users in
             self.viewModels = users.map { CardViewModel(user: $0) }
         }
     }
@@ -52,7 +52,7 @@ class HomeViewController: UIViewController {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Service.fetchUser(withUID: uid) { user in
             self.user = user
-            self.fetchWholeUsers()
+            self.fetchWholeUsers(forCurrentUser: user)
         }
     }
     
