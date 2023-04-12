@@ -5,15 +5,28 @@
 * 기간 : 23.03.30 ~ (진행중) 
 <br>
 
-### 목적 
+### 개발 환경
 ---
-* MVVM 디자인패턴의 적용 및 이해
-* Firebase 다루기 (Auth로 유저 로그인 기능 구현 포함)
-* 오픈라이브러리 SDWebImage, JGProgressHUD 사용하기
-* UIPanGestureRecognizer 다루기
+#### StoryBoard vs Code
+* 100% 코드 (UIKit)
+#### 디자인패턴
+* MVVM 패턴
+#### 사용 기술 및 오픈소스 라이브러리
+* Firebase
+* SDWebImage
+* JGProgressHUD
+
+<br>
+<br>
+<br>
+
+### 배운 점 
+---
 <br>
 
 ### 문제 및 해결과정
 ---
-#### 
+<br>
 
+### 구현 내용 
+---
