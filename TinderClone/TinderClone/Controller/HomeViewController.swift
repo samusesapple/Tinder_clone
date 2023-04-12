@@ -35,24 +35,24 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         checkIfUserIsLoggedIn()
         // 접속한 유저 정보 + 전체 유저 정보 데이터를 Firebase에서 받아옴
-        fetchUser()
-        fetchWholeUsers()
+        fetchCurrentUserAndCards()
         configureUI()
     }
     
     // MARK: - API
     
-    func fetchUser() {
+    func fetchWholeUsers() {
+        Service.fetchWholeUsers { users in
+            self.viewModels = users.map { CardViewModel(user: $0) }
+        }
+    }
+    
+    func fetchCurrentUserAndCards() {
         // 최근 유저의 uid가 있는지 확인 후, 있으면 해당되는 유저 데이터 받기
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Service.fetchUser(withUID: uid) { user in
             self.user = user
-        }
-    }
-    
-    func fetchWholeUsers() {
-        Service.fetchWholeUsers { users in
-            self.viewModels = users.map { CardViewModel(user: $0) }
+            self.fetchWholeUsers()
         }
     }
     
@@ -107,6 +107,7 @@ class HomeViewController: UIViewController {
     func presentLoginController() {
         DispatchQueue.main.async {
             let loginController = LoginController()
+            loginController.delegate = self
             let nav = UINavigationController(rootViewController: loginController)
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true)
@@ -127,7 +128,6 @@ class HomeViewController: UIViewController {
             self.cardViews.remove(at: self.cardViews.count - 1)
             self.topCardView = self.cardViews.last
         }
-
     }
     
 }
@@ -210,6 +210,7 @@ extension HomeViewController: BottomControlsStackViewDelegate {
     }
 }
 
+// MARK: - ProfileViewControllerDelegate
 extension HomeViewController: ProfileViewControllerDelegate {
     func profileController(_ controller: ProfileViewController, didLikeUser user: User) {
         controller.dismiss(animated: true) {
@@ -223,6 +224,14 @@ extension HomeViewController: ProfileViewControllerDelegate {
             Service.saveSwipe(forUser: user, isLike: false)
             self.performSwipeAnimation(shouldLike: false)
         }
+    }
+}
+
+// MARK: - AuthenticationDelegate
+extension HomeViewController: AuthenticationDelegate {
+    func authenticationComplete() {
+        dismiss(animated: true)
+        fetchCurrentUserAndCards()
     }
     
     
