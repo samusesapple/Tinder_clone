@@ -15,6 +15,7 @@ enum SwipeDirection: Int {
 
 protocol CardViewDelegate: AnyObject {
     func showInfoView(_ view: CardView, wantsToShowProfile user: User)
+    func cardView(_ view: CardView, didLikeUser: Bool)
 }
 
 class CardView: UIView {
@@ -149,13 +150,6 @@ class CardView: UIView {
         let shouldDismissCard = abs(sender.translation(in: nil).x) > 100
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
             if shouldDismissCard { // 많이 옆으로 swipe하면,
-                if direction == .right {
-                    Service.setSwipe(forUser: self.viewModel.user, isLike: true)
-                    print("like - \(self.viewModel.user)")
-                } else {
-                    Service.setSwipe(forUser: self.viewModel.user, isLike: false)
-                    print("dislike - \(self.viewModel.user)")
-                }
                 let xTransition = CGFloat(direction.rawValue) * 1000
                 let offScreenTransform = self.transform.translatedBy(x: xTransition, y: 0)
                 self.transform = offScreenTransform
@@ -164,7 +158,8 @@ class CardView: UIView {
             }
         }) { _ in
             if shouldDismissCard {
-                self.removeFromSuperview()
+                let didLike = direction == .right  // 오른쪽이 맞으면 true, 아니면 false
+                self.delegate?.cardView(self, didLikeUser: didLike)
             }
         }
     }

@@ -36,7 +36,7 @@ struct Service {
         }
     }
     
-    static func setSwipe(forUser user: User, isLike: Bool) {
+    static func saveSwipe(forUser user: User, isLike: Bool) {
         guard let uid = Auth.auth().currentUser?.uid else { return}
         
         COLLECTION_SWIPES.document(uid).getDocument { snapshot, error in

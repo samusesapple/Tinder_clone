@@ -8,12 +8,19 @@
 import UIKit
 import SDWebImage
 
+protocol ProfileViewControllerDelegate: AnyObject {
+    func profileController(_ controller: ProfileViewController, didLikeUser user: User)
+    func profileController(_ controller: ProfileViewController, didDislikeUser user: User)
+}
+
 class ProfileViewController: UIViewController {
 
     // MARK: - Properties
     private let user: User
     
     private lazy var viewModel = ProfileViewModel(user: user)
+    weak var delegate: ProfileViewControllerDelegate?
+    
     
     private lazy var collectionView: UICollectionView = {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width + 100)
@@ -106,7 +113,7 @@ class ProfileViewController: UIViewController {
     // MARK: - Actions
     
     @objc func dislikeButtonTapped() {
-        
+        delegate?.profileController(self, didDislikeUser: user)
     }
     
     @objc func superlikeButtonTapped() {
@@ -114,7 +121,7 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func likeButtonTapped() {
-        
+        delegate?.profileController(self, didLikeUser: user)
     }
     
     @objc func dismissButtonTapped() {
