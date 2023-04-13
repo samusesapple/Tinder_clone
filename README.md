@@ -44,11 +44,11 @@
 <br>
 <br>
 
-해결 방법 :
+해결 방법 : <br>
 <img width="803" alt="image" src="https://user-images.githubusercontent.com/126672733/231732988-ede2f56f-3a59-4293-a63d-0a88577e4f51.png">
 <img width="700" alt="image" src="https://user-images.githubusercontent.com/126672733/231732091-4579f5d4-9076-41ab-927f-3d3a21a6e8b9.png">
 
-1. 버튼에 이미지가 있는 경우, 기존 imageURL을 새로운 URL로 대치하는 함수를 생성했습니다.
+1. 버튼에 이미지가 있는 경우, 버튼의 index값을 인자로 받아서 해당되는 index의 imageURL을 새로운 URL로 대치하는 함수를 생성했습니다.
 2. 기존 버튼에 이미지가 있을 경우 / 없을 경우를 분기처리 했습니다.
 <br>
 
