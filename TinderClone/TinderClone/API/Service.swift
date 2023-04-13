@@ -10,7 +10,7 @@ import Firebase
 
 struct Service {
     // [Create] 이미지 데이터를 url로 변형시켜 Firebase에 올리기
-    static func uploadImage(image: UIImage, completion: @escaping (String) -> Void) {
+    static func uploadImage(image: UIImage, index: Int, completion: @escaping (String) -> Void) {
         guard let imageData = image.jpegData(compressionQuality: 0.75) else { return }
         let fileName = NSUUID().uuidString
         let ref = Storage.storage().reference(withPath: "/images/\(fileName)")
@@ -70,6 +70,18 @@ struct Service {
         }
     }
     
+   private static func fetchSwipes(completion: @escaping([String: Bool]) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        COLLECTION_SWIPES.document(uid).getDocument { snapshot, error in
+            guard let data = snapshot?.data() as? [String: Bool] else {
+                completion([String : Bool]())
+                return }
+            
+            completion(data)
+        }
+    }
+    
     static func fetchWholeUsers(forCurrentUser user: User, completion: @escaping ([User]) -> Void) {
         var users = [User]()
         
@@ -77,20 +89,23 @@ struct Service {
                 .whereField("age", isGreaterThan: user.minSeekingAge - 1)
                 .whereField("age", isLessThan: user.maxSeekingAge + 1)
         
-        query.getDocuments { snapshot, error in
-            guard let snapshot = snapshot else { return }
-            snapshot.documents.forEach({ document in
-                let dictionary = document.data()
-                let user = User(dictionary: dictionary)
-                
-                guard user.uid != Auth.auth().currentUser?.uid else { return }
-                users.append(user)
-                
-                if users.count == snapshot.documents.count - 1 {
-                    completion(users)
-                }
-            })
+        fetchSwipes { swipedUserIDs in
+            query.getDocuments { snapshot, error in
+                guard let snapshot = snapshot else { return }
+                snapshot.documents.forEach({ document in
+                    let dictionary = document.data()
+                    let user = User(dictionary: dictionary)
+                    
+                    guard user.uid != Auth.auth().currentUser?.uid else { return }
+                    guard swipedUserIDs[user.uid] == nil else { return }
+                    users.append(user)
+                    
+                })
+                completion(users)
+            }
         }
+        
+
     }
     
     

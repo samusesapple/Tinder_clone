@@ -8,16 +8,14 @@
 import UIKit
 
 protocol MatchViewDelegate: AnyObject {
-    func sendMessage()
-    func keepSwiping()
+    func sendMessage(_ view: MatchView, wantsToSendMessageTo user: User)
 }
 
 class MatchView: UIView {
 
     // MARK: - Properties
     
-    private let currentUser: User
-    private let matchedUser: User
+    private let viewModel: MatchViewViewModel
     
     weak var delegate: MatchViewDelegate?
     
@@ -69,7 +67,7 @@ class MatchView: UIView {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         button.setTitle("KEEP SWIPING", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.addTarget(self, action: #selector(keepSwipingButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleDismissView), for: .touchUpInside)
         return button
     }()
     
@@ -85,11 +83,11 @@ class MatchView: UIView {
     ]
     
     // MARK: - Lifecycle
-    init(currentUser: User, matchedUser: User) {
-        self.currentUser = currentUser
-        self.matchedUser = matchedUser
-        
+    init(viewModel: MatchViewViewModel) {
+        self.viewModel = viewModel
         super.init(frame: .zero)
+        
+        setUserData()
         
         configureBlurView()
         configureUI()
@@ -102,12 +100,9 @@ class MatchView: UIView {
     
     // MARK: - Actions
     @objc func sendMessageButtonTapped() {
-        delegate?.sendMessage()
+        delegate?.sendMessage(self, wantsToSendMessageTo: viewModel.matchedUser)
     }
     
-    @objc func keepSwipingButtonTapped() {
-        delegate?.keepSwiping()
-    }
     
     @objc func handleDismissView() {
         UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut) {
@@ -120,18 +115,25 @@ class MatchView: UIView {
     
     // MARK: - Helpers
     
+    func setUserData() {
+        descriptionLabel.text = viewModel.matchLabelText
+        
+        currentUserImageView.sd_setImage(with: viewModel.currentUserImageURL)
+        matchedUserImageView.sd_setImage(with: viewModel.matchedUserImageURL)
+    }
+    
     func configureUI() {
         views.forEach { view in
             addSubview(view)
-            view.alpha = 1
+            view.alpha = 0
         }
         
-        currentUserImageView.anchor(left: centerXAnchor, paddingLeft: 16)
+        currentUserImageView.anchor(right: centerXAnchor, paddingRight: 16)
         currentUserImageView.setDimensions(height: 140, width: 140)
         currentUserImageView.layer.cornerRadius = 140 / 2
         currentUserImageView.centerY(inView: self)
         
-        matchedUserImageView.anchor(right: centerXAnchor, paddingRight: 16)
+        matchedUserImageView.anchor(left: centerXAnchor, paddingLeft: 16)
         matchedUserImageView.setDimensions(height: 140, width: 140)
         matchedUserImageView.layer.cornerRadius = 140 / 2
         matchedUserImageView.centerY(inView: self)
@@ -154,16 +156,16 @@ class MatchView: UIView {
         
         let angle = 30 * CGFloat.pi / 180
         
-        currentUserImageView.transform = CGAffineTransform(rotationAngle: angle).concatenating(CGAffineTransform(translationX: 200, y: 0))
+        currentUserImageView.transform = CGAffineTransform(rotationAngle: -angle).concatenating(CGAffineTransform(translationX: 200, y: 0))
         
-        matchedUserImageView.transform = CGAffineTransform(rotationAngle: -angle).concatenating(CGAffineTransform(translationX: -200, y: 0))
+        matchedUserImageView.transform = CGAffineTransform(rotationAngle: angle).concatenating(CGAffineTransform(translationX: -200, y: 0))
         
         self.sendMessageButton.transform = CGAffineTransform(translationX: -500, y: 0)
         self.keepSwipingButton.transform = CGAffineTransform(translationX: 500, y: 0)
         
         UIView.animateKeyframes(withDuration: 1.3, delay: 0, options: .calculationModeCubic) {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.45) {
-                self.currentUserImageView.transform = CGAffineTransform(rotationAngle: angle)
+                self.currentUserImageView.transform = CGAffineTransform(rotationAngle: -angle)
                 self.matchedUserImageView.transform = CGAffineTransform(rotationAngle: -angle)
             }
             UIView.addKeyframe(withRelativeStartTime: 0.6, relativeDuration: 0.4) {

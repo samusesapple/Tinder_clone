@@ -56,7 +56,7 @@ class SettingsViewController: UITableViewController {
         Service.saveUserData(user: user) { [weak self] error in
             self?.delegate?.updateUserData(self!, userData: self!.user)
         }
-
+        
         
     }
     
@@ -67,18 +67,26 @@ class SettingsViewController: UITableViewController {
         hud.textLabel.text = "Loading Image.."
         hud.show(in: view)
         
-        Service.uploadImage(image: image) { imageURL in
+        Service.uploadImage(image: image, index: 0) { imageURL in
+            // index에 해당되는 버튼에 이미지가 없다면, 새로운 이미지 생성
+            print("upload NEW IMAGE")
             self.user.imageURLs.append(imageURL)
             hud.dismiss(animated: true)
         }
     }
     
-    func updateImage(image: UIImage) {
+    func updateImage(image: UIImage, index: Int) {
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Loading Image.."
         hud.show(in: view)
         
-//        Service.
+        Service.uploadImage(image: image, index: index) { imageURL in
+            // index에 해당되는 버튼에 이미지가 있다면, 기존 urls의 이미지 새로운 url로 대치
+            print("updateImage - UPDATE \(index)'s IMAGE")
+            self.user.imageURLs[index] = imageURL
+            
+            hud.dismiss(animated: true)
+        }
     }
     
     
@@ -176,7 +184,17 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let selectedImage = info[.originalImage] as? UIImage else { return }
         
-        uploadImage(image: selectedImage)
+        // 빈 버튼의 이미지 선택하면, 데이터베이스에 url 업로드
+        if headerView.buttonsArray[imageIndex].imageView?.image == nil {
+            uploadImage(image: selectedImage)
+            print("imagePickerController - imageIndex : \(imageIndex)")
+        } else {
+            // 기존과 동일한 이미지를 선택하면, 함수 종료
+            if selectedImage == headerView.buttonsArray[imageIndex].imageView?.image { return }
+            
+            // 새로운 이미지를 선택하면, 데이터베이스에 새로운 이미지url 업로드
+            updateImage(image: selectedImage, index: imageIndex)
+        }
         // 선택된 사진 업데이트 해야함
         setHeaderImage(selectedImage)
         
@@ -197,7 +215,7 @@ extension SettingsViewController: SettingsViewCellDelegate {
     
     func settingsCell(_ cell: SettingsViewCell, updateUserDataWith updateValue: String, for section: SettingsSection) {
         switch section {
-
+            
         case .name:
             user.name = updateValue
         case .profession:
