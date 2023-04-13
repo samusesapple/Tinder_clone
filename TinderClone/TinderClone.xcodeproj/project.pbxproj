@@ -28,6 +28,8 @@
 		F1D0FD0929DC279000AB1295 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0FD0829DC279000AB1295 /* CustomTextField.swift */; };
 		F1D0FD0B29DC2A4900AB1295 /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0FD0A29DC2A4900AB1295 /* AuthButton.swift */; };
 		F1D5902029E5477900009EAB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D5901F29E5477900009EAB /* Extensions.swift */; };
+		F1D83E9A29E7A14C0076A8A5 /* SendMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D83E9929E7A14C0076A8A5 /* SendMessageButton.swift */; };
+		F1D83E9C29E7A15B0076A8A5 /* KeepSwipingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D83E9B29E7A15B0076A8A5 /* KeepSwipingButton.swift */; };
 		F1DECA9129D56B60001C758F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DECA9029D56B60001C758F /* AppDelegate.swift */; };
 		F1DECA9329D56B60001C758F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DECA9229D56B60001C758F /* SceneDelegate.swift */; };
 		F1DECA9A29D56B61001C758F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1DECA9929D56B61001C758F /* Assets.xcassets */; };
@@ -64,6 +66,8 @@
 		F1D0FD0829DC279000AB1295 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		F1D0FD0A29DC2A4900AB1295 /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
 		F1D5901F29E5477900009EAB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F1D83E9929E7A14C0076A8A5 /* SendMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageButton.swift; sourceTree = "<group>"; };
+		F1D83E9B29E7A15B0076A8A5 /* KeepSwipingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepSwipingButton.swift; sourceTree = "<group>"; };
 		F1DECA8D29D56B60001C758F /* TinderClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1DECA9029D56B60001C758F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1DECA9229D56B60001C758F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +130,16 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
+		F1D83E9829E7A10D0076A8A5 /* Match */ = {
+			isa = PBXGroup;
+			children = (
+				F1459C3D29E6B0FC00E73DC1 /* MatchView.swift */,
+				F1D83E9929E7A14C0076A8A5 /* SendMessageButton.swift */,
+				F1D83E9B29E7A15B0076A8A5 /* KeepSwipingButton.swift */,
+			);
+			path = Match;
+			sourceTree = "<group>";
+		};
 		F1DECA8429D56B60001C758F = {
 			isa = PBXGroup;
 			children = (
@@ -175,12 +189,12 @@
 			isa = PBXGroup;
 			children = (
 				F117F5D429E25DC600A44FCC /* Settings */,
+				F1D83E9829E7A10D0076A8A5 /* Match */,
 				F1DECAAE29D570DA001C758F /* HomeNavigationStackView.swift */,
 				F14A47B129D7CEA100CB0BC4 /* BottomControlsStackView.swift */,
 				F12B1B8C29D7DCC600ED8F84 /* CardView.swift */,
 				F1EA639A29E2C87A00A064D9 /* ProfileCell.swift */,
 				F1EA639E29E5117000A064D9 /* SegmentedBarView.swift */,
-				F1459C3D29E6B0FC00E73DC1 /* MatchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -366,7 +380,9 @@
 				F117F5CF29DFF6AD00A44FCC /* SettingsHeaderView.swift in Sources */,
 				F1D5902029E5477900009EAB /* Extensions.swift in Sources */,
 				F14A3EE729D95BAC0045D363 /* CardViewModel.swift in Sources */,
+				F1D83E9C29E7A15B0076A8A5 /* KeepSwipingButton.swift in Sources */,
 				F1EA639B29E2C87A00A064D9 /* ProfileCell.swift in Sources */,
+				F1D83E9A29E7A14C0076A8A5 /* SendMessageButton.swift in Sources */,
 				F14A3EEA29D96CBB0045D363 /* LoginController.swift in Sources */,
 				F117F5D329E011D500A44FCC /* SettingsViewModel.swift in Sources */,
 			);

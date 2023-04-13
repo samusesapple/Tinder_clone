@@ -33,6 +33,7 @@ class MatchView: UIView {
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 20)
         label.numberOfLines = 0
+        label.text = "You and Someone have liked each other!"
         return label
     }()
     
@@ -45,7 +46,7 @@ class MatchView: UIView {
         return imageView
     }()
     
-    private let matchUserImageView: UIImageView = {
+    private let matchedUserImageView: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "jane1"))
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -55,7 +56,7 @@ class MatchView: UIView {
     }()
     
     private let sendMessageButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button = SendMessageButton(type: .system)
         button.setTitle("SEND MESSAGE", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(sendMessageButtonTapped), for: .touchUpInside)
@@ -63,7 +64,7 @@ class MatchView: UIView {
     }()
     
     private let keepSwipingButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button = KeepSwipingButton(type: .system)
         button.setTitle("KEEP SWIPING", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(keepSwipingButtonTapped), for: .touchUpInside)
@@ -76,7 +77,7 @@ class MatchView: UIView {
         matchedImageView,
         descriptionLabel,
         currentUserImageView,
-        matchUserImageView,
+        matchedUserImageView,
         sendMessageButton,
         keepSwipingButton
     ]
@@ -89,6 +90,7 @@ class MatchView: UIView {
         super.init(frame: .zero)
         
         configureBlurView()
+        configureUI()
     }
     
     required init?(coder: NSCoder) {
@@ -104,6 +106,15 @@ class MatchView: UIView {
         delegate?.keepSwiping()
     }
     
+    @objc func handleDismissView() {
+        UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut) {
+            self.alpha = 0
+        } completion: { _ in
+            self.removeFromSuperview()
+        }
+
+    }
+    
     // MARK: - Helpers
     
     func configureUI() {
@@ -112,15 +123,38 @@ class MatchView: UIView {
             view.alpha = 1
         }
         
-//        matchedImageView.anchor(top: , left: <#T##NSLayoutXAxisAnchor?#>, )
+        matchedUserImageView.anchor(left: centerXAnchor, paddingLeft: 16)
+        matchedUserImageView.setDimensions(height: 140, width: 140)
+        matchedUserImageView.layer.cornerRadius = 140 / 2
+        matchedUserImageView.centerY(inView: self)
+        
+        currentUserImageView.anchor(right: centerXAnchor, paddingRight: 16)
+        currentUserImageView.setDimensions(height: 140, width: 140)
+        currentUserImageView.layer.cornerRadius = 140 / 2
+        currentUserImageView.centerY(inView: self)
+        
+        sendMessageButton.anchor(top: currentUserImageView.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 32, paddingLeft: 48, paddingRight: 48)
+        sendMessageButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        keepSwipingButton.anchor(top: sendMessageButton.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 20, paddingLeft: 48, paddingRight: 48)
+        keepSwipingButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        descriptionLabel.anchor(left: leftAnchor, bottom: currentUserImageView.topAnchor, right: rightAnchor, paddingBottom: 32)
+        
+        matchedImageView.anchor(bottom: descriptionLabel.topAnchor, paddingBottom: 16)
+        matchedImageView.setDimensions(height: 80, width: 300)
+        matchedImageView.centerX(inView: self)
     }
     
     func configureBlurView() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleDismissView))
+        visualEffectView.addGestureRecognizer(tap)
+        
         addSubview(visualEffectView)
         visualEffectView.fillSuperview()
         visualEffectView.alpha = 0
         
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut) {
+        UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut) {
             self.visualEffectView.alpha = 1
         }
     }
