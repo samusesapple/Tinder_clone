@@ -10,7 +10,7 @@ import Firebase
 
 struct Service {
     // [Create] 이미지 데이터를 url로 변형시켜 Firebase에 올리기
-    static func uploadImage(image: UIImage, index: Int, completion: @escaping (String) -> Void) {
+    static func uploadImage(image: UIImage, completion: @escaping (String) -> Void) {
         guard let imageData = image.jpegData(compressionQuality: 0.75) else { return }
         let fileName = NSUUID().uuidString
         let ref = Storage.storage().reference(withPath: "/images/\(fileName)")
@@ -104,8 +104,6 @@ struct Service {
                 completion(users)
             }
         }
-        
-
     }
     
     
@@ -122,15 +120,4 @@ struct Service {
         COLLECTION_USERS.document(user.uid).setData(data, completion: completion)
     }
  
-//    static func updateUserImage(forUser user: User, previousImageURL: String, newImage: UIImage) {
-//        guard let uid = Auth.auth().currentUser?.uid else { return }
-//        COLLECTION_USERS.document(uid).getDocument { snapshot, error in
-//            let previousData = ["imageURLs": previousImageURL]
-//            if snapshot?.exists == true {
-//                COLLECTION_SWIPES.document(uid).updateData(data)
-//            } else {
-//                COLLECTION_SWIPES.document(uid).setData(data)
-//            }
-//        }
-//    }
 }
