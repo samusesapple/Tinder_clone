@@ -189,9 +189,6 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
             uploadImage(image: selectedImage)
             print("imagePickerController - imageIndex : \(imageIndex)")
         } else {
-            // 기존과 동일한 이미지를 선택하면, 함수 종료
-            if selectedImage == headerView.buttonsArray[imageIndex].imageView?.image { return }
-            
             // 새로운 이미지를 선택하면, 데이터베이스에 새로운 이미지url 업로드
             updateImage(image: selectedImage, index: imageIndex)
         }
