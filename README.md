@@ -44,7 +44,7 @@
 <br>
 <br>
 
-* 해결 방법 :
+해결 방법 :
 <img width="803" alt="image" src="https://user-images.githubusercontent.com/126672733/231732988-ede2f56f-3a59-4293-a63d-0a88577e4f51.png">
 <img width="700" alt="image" src="https://user-images.githubusercontent.com/126672733/231732091-4579f5d4-9076-41ab-927f-3d3a21a6e8b9.png">
 
