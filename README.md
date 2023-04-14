@@ -90,9 +90,14 @@
 ![Simulator Screen Recording - iPhone 14 Pro - 2023-04-14 at 16 24 19](https://user-images.githubusercontent.com/126672733/231973186-ba2a142a-4d96-41ce-ae44-8a8a5f5df345.gif)
 <br>
 
-* #### 유저 카드 swipe / 버튼 눌러서 해당 유저 좋아요 싫어요 <br>
+* #### 유저 카드 이미지 확인 <br>
 ![Simulator Screen Recording - iPhone 14 Pro - 2023-04-14 at 16 18 30](https://user-images.githubusercontent.com/126672733/231971959-1df30fc0-b92b-4bd2-87d0-84caae0c68a3.gif)
 <br>
+
+* #### swipe / 버튼 눌러서 해당 유저 좋아요 싫어요 선택하기 <br>
+![Simulator Screen Recording - iPhone 14 - 2023-04-14 at 16 34 32](https://user-images.githubusercontent.com/126672733/231976685-1ff91316-4b07-4e08-bd50-3d966950289c.gif)
+<br>
+
 
 * #### 서로 좋아요 된 상태면 매칭 및 서로 메세지에서 매칭된 상대 목록 확인 <br>
 ![Simulator Screen Recording - iPhone 14 Pro - 2023-04-14 at 16 08 54](https://user-images.githubusercontent.com/126672733/231969993-f40f9013-8767-473d-a462-c08b898dc7a2.gif)
