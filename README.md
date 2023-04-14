@@ -82,7 +82,10 @@
 ### 시연 영상 
 ---
 * #### 로그인, 로그아웃, 회원가입 <br>
-![Simulator Screen Recording - iPhone 14 Pro - 2023-04-14 at 16 13 35](https://user-images.githubusercontent.com/126672733/231972132-7119cd11-22f3-438e-a8cb-2ad9d3ba142f.gif)
+![Simulator Screen Recording - iPhone 14 - 2023-04-14 at 16 46 57](https://user-images.githubusercontent.com/126672733/231979103-600b1fe2-99bb-4e35-ba24-c4668112ba4a.gif)!
+[Simulator Screen Recording - iPhone 14 - 2023-04-14 at 16 47 59](https://user-images.githubusercontent.com/126672733/231979323-b0130bc0-2c89-48b0-9e84-54da2ba17931.gif)
+
+
 <br>
 
 * #### 유저 정보 수정 및 유저 목록 새로고침 <br>
