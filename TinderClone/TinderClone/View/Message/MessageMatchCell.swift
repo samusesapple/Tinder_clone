@@ -7,12 +7,18 @@
 
 import UIKit
 
-class MatchCell: UICollectionViewCell {
-
+class MessageMatchCell: UICollectionViewCell {
+    
+    var viewModel: MessageMatchCellViewModel? {
+        didSet {
+            setMatchedUserData()
+        }
+    }
+    
     // MARK: - Properties
     
     private let profileImageView: UIImageView = {
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "kelly3"))
+        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.layer.borderWidth = 2
         imageView.layer.borderColor = UIColor.white.cgColor
@@ -24,11 +30,10 @@ class MatchCell: UICollectionViewCell {
     
     private let userNameLabel: UILabel = {
        let label = UILabel()
-        label.text = "Username"
         label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         label.textColor = .darkGray
         label.textAlignment = .center
-        label.numberOfLines = 2
+        label.numberOfLines = 0 // 유동적으로 변하게
         return label
     }()
     
@@ -42,7 +47,6 @@ class MatchCell: UICollectionViewCell {
         stack.distribution = .fillProportionally
         stack.alignment = .center
         stack.spacing = 6
-        
         addSubview(stack)
         stack.fillSuperview()
     }
@@ -51,6 +55,12 @@ class MatchCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-
+    // MARK: - Helper
+    
+    func setMatchedUserData() {
+        guard let viewModel = viewModel else { return }
+        userNameLabel.text = viewModel.nameText
+        profileImageView.sd_setImage(with: viewModel.profileImageURL)
+    }
 
 }

@@ -12,7 +12,7 @@ class MessageViewController: UITableViewController {
     // MARK: - Properties
     
     private let user: User
-    private let headerView = MatchHeaderCollectionView()
+    private let headerView = MessageHeaderCollectionView()
     
     // MARK: - Lifecycle
     init(user: User) {
@@ -23,6 +23,7 @@ class MessageViewController: UITableViewController {
     override func viewDidLoad() {
         configureTableView()
         configureNavigationBar()
+        fetchMatches()
     }
     
     required init?(coder: NSCoder) {
@@ -35,6 +36,14 @@ class MessageViewController: UITableViewController {
         dismiss(animated: true)
     }
     
+    // MARK: - API
+    
+    func fetchMatches() {
+        Service.fetchMatches { matches in
+            self.headerView.matches = matches
+        }
+    }
+    
     // MARK: - Helpers
     func configureTableView() {
         tableView.rowHeight = 80
@@ -42,6 +51,7 @@ class MessageViewController: UITableViewController {
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
+        headerView.delegate = self
         headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 200)
         tableView.tableHeaderView = headerView
     }
@@ -95,5 +105,15 @@ extension MessageViewController {
         
         return view
     }
+}
 
+// MARK: - UICollectionViewDelegate
+extension MessageViewController: MessageHeaderDelegate {
+    func messageHeader(_ header: MessageHeaderCollectionView, wantsToStartChatWith uid: String) {
+        Service.fetchUser(withUID: uid) { user in
+            print("Message with \(user.name) ")
+        }
+    }
+    
+    
 }

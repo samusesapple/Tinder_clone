@@ -101,6 +101,7 @@ class MatchView: UIView {
     // MARK: - Actions
     @objc func sendMessageButtonTapped() {
         delegate?.sendMessage(self, wantsToSendMessageTo: viewModel.matchedUser)
+        self.removeFromSuperview()
     }
     
     

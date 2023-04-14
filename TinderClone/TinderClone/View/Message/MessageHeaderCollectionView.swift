@@ -7,11 +7,23 @@
 
 import UIKit
 
-class MatchHeaderCollectionView: UICollectionReusableView {
+private let cellIdentifier = "MessageMatchCell"
 
-    private let cellIdentifier = "MatchCell"
+protocol MessageHeaderDelegate: AnyObject {
+    func messageHeader(_ header: MessageHeaderCollectionView, wantsToStartChatWith uid: String)
+}
+
+class MessageHeaderCollectionView: UICollectionReusableView {
+    
+    var matches = [Match]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     // MARK: - Properties
+    
+    weak var delegate: MessageHeaderDelegate?
     
     private let newMatchesLabel: UILabel = {
         let label = UILabel()
@@ -30,7 +42,7 @@ class MatchHeaderCollectionView: UICollectionReusableView {
         // collectionView의 delegate, dataSource 세팅, cell 등록
         cv.delegate = self
         cv.dataSource = self
-        cv.register(MatchCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        cv.register(MessageMatchCell.self, forCellWithReuseIdentifier: cellIdentifier)
         return cv
     }()
     
@@ -54,29 +66,35 @@ class MatchHeaderCollectionView: UICollectionReusableView {
     
 }
 // MARK: - UICollectionViewDataSource
-extension MatchHeaderCollectionView: UICollectionViewDataSource {
+extension MessageHeaderCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return matches.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // collectionView에 사용할 cell dequeue하기 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! MatchCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! MessageMatchCell
+        let viewModel = MessageMatchCellViewModel(match: matches[indexPath.row])
+        cell.viewModel = viewModel
         return cell
     }
     
 }
 
 // MARK: - UICollectionViewDelegate
-extension MatchHeaderCollectionView: UICollectionViewDelegate {
-    
+extension MessageHeaderCollectionView: UICollectionViewDelegate {
+    // 셀 선택되면 실행되는 함수
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let uid = matches[indexPath.row].uid
+        self.delegate?.messageHeader(self, wantsToStartChatWith: uid)
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-extension MatchHeaderCollectionView: UICollectionViewDelegateFlowLayout {
+extension MessageHeaderCollectionView: UICollectionViewDelegateFlowLayout {
     // 매 인덱스마다 cell 사이즈 정해주기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 80, height: 108)
+        return CGSize(width: 80, height: 120)
     }
 }
 

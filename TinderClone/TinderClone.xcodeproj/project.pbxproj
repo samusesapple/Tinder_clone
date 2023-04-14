@@ -19,9 +19,10 @@
 		F122E95629DD333600937C08 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F122E95529DD333600937C08 /* AuthenticationViewModel.swift */; };
 		F12B1B8D29D7DCC600ED8F84 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12B1B8C29D7DCC600ED8F84 /* CardView.swift */; };
 		F1459C3E29E6B0FC00E73DC1 /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1459C3D29E6B0FC00E73DC1 /* MatchView.swift */; };
-		F1487D9D29E8EA4D00327585 /* MatchHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1487D9C29E8EA4D00327585 /* MatchHeaderCollectionView.swift */; };
-		F1487D9F29E8ED4A00327585 /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1487D9E29E8ED4A00327585 /* MatchCell.swift */; };
+		F1487D9D29E8EA4D00327585 /* MessageHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1487D9C29E8EA4D00327585 /* MessageHeaderCollectionView.swift */; };
+		F1487D9F29E8ED4A00327585 /* MessageMatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1487D9E29E8ED4A00327585 /* MessageMatchCell.swift */; };
 		F1487DA129E8F4AE00327585 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1487DA029E8F4AE00327585 /* Match.swift */; };
+		F1487DA429E9089600327585 /* MessageMatchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1487DA329E9089600327585 /* MessageMatchCellViewModel.swift */; };
 		F14A3EE529D95A660045D363 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3EE429D95A660045D363 /* User.swift */; };
 		F14A3EE729D95BAC0045D363 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3EE629D95BAC0045D363 /* CardViewModel.swift */; };
 		F14A3EEA29D96CBB0045D363 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3EE929D96CBB0045D363 /* LoginController.swift */; };
@@ -62,9 +63,10 @@
 		F122E95529DD333600937C08 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		F12B1B8C29D7DCC600ED8F84 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		F1459C3D29E6B0FC00E73DC1 /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
-		F1487D9C29E8EA4D00327585 /* MatchHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHeaderCollectionView.swift; sourceTree = "<group>"; };
-		F1487D9E29E8ED4A00327585 /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
+		F1487D9C29E8EA4D00327585 /* MessageHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHeaderCollectionView.swift; sourceTree = "<group>"; };
+		F1487D9E29E8ED4A00327585 /* MessageMatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMatchCell.swift; sourceTree = "<group>"; };
 		F1487DA029E8F4AE00327585 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		F1487DA329E9089600327585 /* MessageMatchCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMatchCellViewModel.swift; sourceTree = "<group>"; };
 		F14A3EE429D95A660045D363 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F14A3EE629D95BAC0045D363 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		F14A3EE929D96CBB0045D363 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -129,6 +131,15 @@
 				F117F5D529E25E2D00A44FCC /* SettingsFooter.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		F1487DA229E8FFA000327585 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				F1487D9C29E8EA4D00327585 /* MessageHeaderCollectionView.swift */,
+				F1487D9E29E8ED4A00327585 /* MessageMatchCell.swift */,
+			);
+			path = Message;
 			sourceTree = "<group>";
 		};
 		F14A3EE829D96CA30045D363 /* Authentication */ = {
@@ -201,13 +212,12 @@
 			children = (
 				F117F5D429E25DC600A44FCC /* Settings */,
 				F1D83E9829E7A10D0076A8A5 /* Match */,
+				F1487DA229E8FFA000327585 /* Message */,
 				F1DECAAE29D570DA001C758F /* HomeNavigationStackView.swift */,
 				F14A47B129D7CEA100CB0BC4 /* BottomControlsStackView.swift */,
 				F12B1B8C29D7DCC600ED8F84 /* CardView.swift */,
 				F1EA639A29E2C87A00A064D9 /* ProfileCell.swift */,
 				F1EA639E29E5117000A064D9 /* SegmentedBarView.swift */,
-				F1487D9C29E8EA4D00327585 /* MatchHeaderCollectionView.swift */,
-				F1487D9E29E8ED4A00327585 /* MatchCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -220,6 +230,7 @@
 				F117F5D229E011D500A44FCC /* SettingsViewModel.swift */,
 				F1EA639C29E5074900A064D9 /* ProfileViewModel.swift */,
 				F1D83E9D29E7BC670076A8A5 /* MatchViewViewModel.swift */,
+				F1487DA329E9089600327585 /* MessageMatchCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -372,7 +383,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F117F5CD29DFEE3800A44FCC /* SettingsViewController.swift in Sources */,
-				F1487D9D29E8EA4D00327585 /* MatchHeaderCollectionView.swift in Sources */,
+				F1487D9D29E8EA4D00327585 /* MessageHeaderCollectionView.swift in Sources */,
 				F12B1B8D29D7DCC600ED8F84 /* CardView.swift in Sources */,
 				F117F5CB29DEA09800A44FCC /* Constants.swift in Sources */,
 				F1D0FD0B29DC2A4900AB1295 /* AuthButton.swift in Sources */,
@@ -402,7 +413,8 @@
 				F1D83E9C29E7A15B0076A8A5 /* KeepSwipingButton.swift in Sources */,
 				F1EA639B29E2C87A00A064D9 /* ProfileCell.swift in Sources */,
 				F1D83E9A29E7A14C0076A8A5 /* SendMessageButton.swift in Sources */,
-				F1487D9F29E8ED4A00327585 /* MatchCell.swift in Sources */,
+				F1487DA429E9089600327585 /* MessageMatchCellViewModel.swift in Sources */,
+				F1487D9F29E8ED4A00327585 /* MessageMatchCell.swift in Sources */,
 				F14A3EEA29D96CBB0045D363 /* LoginController.swift in Sources */,
 				F117F5D329E011D500A44FCC /* SettingsViewModel.swift in Sources */,
 			);

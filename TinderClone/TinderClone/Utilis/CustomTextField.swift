@@ -18,6 +18,7 @@ class CustomTextField: UITextField {
          leftViewMode = .always
          borderStyle = .none
          textColor = .white
+        autocapitalizationType = .none
         keyboardAppearance = .dark
          backgroundColor = UIColor(white: 1, alpha: 0.2)
         heightAnchor.constraint(equalToConstant: 50).isActive = true

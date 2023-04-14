@@ -34,11 +34,14 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         checkIfUserIsLoggedIn()
-        // 접속한 유저 정보 + 전체 유저 정보 데이터를 Firebase에서 받아옴
-        fetchCurrentUserAndCards()
         configureUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        // 접속한 유저 정보 + 전체 유저 정보 데이터를 Firebase에서 받아옴
+        fetchCurrentUserAndCards()
+        print(#function)
+    }
     // MARK: - API
     
     func fetchWholeUsers(forCurrentUser user: User) {
@@ -271,6 +274,8 @@ extension HomeViewController: AuthenticationDelegate {
 extension HomeViewController: MatchViewDelegate {
     func sendMessage(_ view: MatchView, wantsToSendMessageTo user: User) {
         print("Show conversation with : \(user.name)")
+        showMessages()
+        
     }
     
     
