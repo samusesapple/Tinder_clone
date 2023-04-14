@@ -65,8 +65,9 @@ struct Service {
             guard let data = snapshot?.data() else { return }
             // 상대방 데이터에 접속된 유저의 uid에 해당되는 swipe데이터를 -> Bool타입캐스팅해서 받기 (ture/false)
             guard let didMatch = data[currentUid] as? Bool else { return }
-            print(didMatch)
-            completion(didMatch)
+            if didMatch == true {
+                completion(didMatch)
+            }
         }
     }
     
