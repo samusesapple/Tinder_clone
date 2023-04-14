@@ -82,6 +82,9 @@ class HomeViewController: UIViewController {
             
             Service.checkIfMatchExists(forUser: user) { didMatch in
                 self.presentMatchView(matchUser: user)
+                
+                guard let currentUser = self.user else { return }
+                Service.uploadMatch(currentUser: currentUser, matchedUser: user)
             }
         }
     }
@@ -170,7 +173,11 @@ extension HomeViewController: HomeNavigationStackViewDelegate {
     }
     
     func showMessages() {
-        print("show Messages")
+        guard let user = user else { return }
+        let messageVC = MessageViewController(user: user)
+        let nav = UINavigationController(rootViewController: messageVC)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
     }
     
 }

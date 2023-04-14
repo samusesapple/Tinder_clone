@@ -19,11 +19,15 @@
 		F122E95629DD333600937C08 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F122E95529DD333600937C08 /* AuthenticationViewModel.swift */; };
 		F12B1B8D29D7DCC600ED8F84 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12B1B8C29D7DCC600ED8F84 /* CardView.swift */; };
 		F1459C3E29E6B0FC00E73DC1 /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1459C3D29E6B0FC00E73DC1 /* MatchView.swift */; };
+		F1487D9D29E8EA4D00327585 /* MatchHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1487D9C29E8EA4D00327585 /* MatchHeaderCollectionView.swift */; };
+		F1487D9F29E8ED4A00327585 /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1487D9E29E8ED4A00327585 /* MatchCell.swift */; };
+		F1487DA129E8F4AE00327585 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1487DA029E8F4AE00327585 /* Match.swift */; };
 		F14A3EE529D95A660045D363 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3EE429D95A660045D363 /* User.swift */; };
 		F14A3EE729D95BAC0045D363 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3EE629D95BAC0045D363 /* CardViewModel.swift */; };
 		F14A3EEA29D96CBB0045D363 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3EE929D96CBB0045D363 /* LoginController.swift */; };
 		F14A3EEC29D96CCE0045D363 /* RegistrationConrtoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3EEB29D96CCE0045D363 /* RegistrationConrtoller.swift */; };
 		F14A47B229D7CEA100CB0BC4 /* BottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A47B129D7CEA100CB0BC4 /* BottomControlsStackView.swift */; };
+		F156F27F29E8E3170030093F /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F156F27E29E8E3170030093F /* MessageViewController.swift */; };
 		F1828F1F29DD593F00C38391 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1828F1E29DD593F00C38391 /* GoogleService-Info.plist */; };
 		F1D0FD0929DC279000AB1295 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0FD0829DC279000AB1295 /* CustomTextField.swift */; };
 		F1D0FD0B29DC2A4900AB1295 /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0FD0A29DC2A4900AB1295 /* AuthButton.swift */; };
@@ -58,11 +62,15 @@
 		F122E95529DD333600937C08 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		F12B1B8C29D7DCC600ED8F84 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		F1459C3D29E6B0FC00E73DC1 /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
+		F1487D9C29E8EA4D00327585 /* MatchHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHeaderCollectionView.swift; sourceTree = "<group>"; };
+		F1487D9E29E8ED4A00327585 /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
+		F1487DA029E8F4AE00327585 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		F14A3EE429D95A660045D363 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F14A3EE629D95BAC0045D363 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		F14A3EE929D96CBB0045D363 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		F14A3EEB29D96CCE0045D363 /* RegistrationConrtoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationConrtoller.swift; sourceTree = "<group>"; };
 		F14A47B129D7CEA100CB0BC4 /* BottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomControlsStackView.swift; sourceTree = "<group>"; };
+		F156F27E29E8E3170030093F /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		F1828F1E29DD593F00C38391 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F1D0FD0829DC279000AB1295 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		F1D0FD0A29DC2A4900AB1295 /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
@@ -183,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				F14A3EE429D95A660045D363 /* User.swift */,
+				F1487DA029E8F4AE00327585 /* Match.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -197,6 +206,8 @@
 				F12B1B8C29D7DCC600ED8F84 /* CardView.swift */,
 				F1EA639A29E2C87A00A064D9 /* ProfileCell.swift */,
 				F1EA639E29E5117000A064D9 /* SegmentedBarView.swift */,
+				F1487D9C29E8EA4D00327585 /* MatchHeaderCollectionView.swift */,
+				F1487D9E29E8ED4A00327585 /* MatchCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -220,6 +231,7 @@
 				F1DECAAA29D56CD0001C758F /* HomeViewController.swift */,
 				F117F5CC29DFEE3800A44FCC /* SettingsViewController.swift */,
 				F1EA639829E2B10600A064D9 /* ProfileViewController.swift */,
+				F156F27E29E8E3170030093F /* MessageViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -360,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F117F5CD29DFEE3800A44FCC /* SettingsViewController.swift in Sources */,
+				F1487D9D29E8EA4D00327585 /* MatchHeaderCollectionView.swift in Sources */,
 				F12B1B8D29D7DCC600ED8F84 /* CardView.swift in Sources */,
 				F117F5CB29DEA09800A44FCC /* Constants.swift in Sources */,
 				F1D0FD0B29DC2A4900AB1295 /* AuthButton.swift in Sources */,
@@ -369,6 +382,7 @@
 				F1DECA9129D56B60001C758F /* AppDelegate.swift in Sources */,
 				F14A3EEC29D96CCE0045D363 /* RegistrationConrtoller.swift in Sources */,
 				F1DECAAF29D570DA001C758F /* HomeNavigationStackView.swift in Sources */,
+				F1487DA129E8F4AE00327585 /* Match.swift in Sources */,
 				F14A3EE529D95A660045D363 /* User.swift in Sources */,
 				F1DECA9329D56B60001C758F /* SceneDelegate.swift in Sources */,
 				F117F5D629E25E2D00A44FCC /* SettingsFooter.swift in Sources */,
@@ -384,9 +398,11 @@
 				F117F5CF29DFF6AD00A44FCC /* SettingsHeaderView.swift in Sources */,
 				F1D5902029E5477900009EAB /* Extensions.swift in Sources */,
 				F14A3EE729D95BAC0045D363 /* CardViewModel.swift in Sources */,
+				F156F27F29E8E3170030093F /* MessageViewController.swift in Sources */,
 				F1D83E9C29E7A15B0076A8A5 /* KeepSwipingButton.swift in Sources */,
 				F1EA639B29E2C87A00A064D9 /* ProfileCell.swift in Sources */,
 				F1D83E9A29E7A14C0076A8A5 /* SendMessageButton.swift in Sources */,
+				F1487D9F29E8ED4A00327585 /* MatchCell.swift in Sources */,
 				F14A3EEA29D96CBB0045D363 /* LoginController.swift in Sources */,
 				F117F5D329E011D500A44FCC /* SettingsViewModel.swift in Sources */,
 			);

@@ -71,6 +71,31 @@ struct Service {
         }
     }
     
+    static func uploadMatch(currentUser: User, matchedUser: User) {
+        guard let matchedUserProfileImageURL = matchedUser.imageURLs.first else { return}
+        guard let currentUserProfileImageURL = currentUser.imageURLs.first else { return }
+        
+        let matchedUserData = ["uid": matchedUser.uid,
+                               "name": matchedUser.name,
+                               "profileImageURL": matchedUserProfileImageURL]
+        // 1. COLLECTION_MATCHES_MESSAGES.document - 'current 유저 uid'로 된 document 생성
+        // 2. current 유저의 uid로 된 document - 'matches' 컬렉션 생성
+        // 3. 'matches' 컬렉션 - 'matched 유저 uid' document 생성
+        // 4. matched 유저 uid document - 'matchedUserData 형식 및 데이터로 matched 유저 정보' 저장
+        
+        COLLECTION_MATCHES_MESSAGES.document(currentUser.uid).collection("matches").document(matchedUser.uid).setData(matchedUserData)
+        
+        let currentUserData = ["uid": currentUser.uid,
+                               "name": currentUser.name,
+                               "profileImageURL": currentUserProfileImageURL]
+        
+        // 1. COLLECTION_MATCHES_MESSAGES.document - 'matched 유저 uid'로 된 document 생성
+        // 2. matched 유저의 uid로 된 document - 'matches' 컬렉션 생성
+        // 3. 'matches' 컬렉션 - 'current 유저 uid' document 생성
+        // 4. current 유저 uid document - 'currentUserData 형식 및 데이터로 current 유저 정보' 저장
+        COLLECTION_MATCHES_MESSAGES.document(matchedUser.uid).collection("matches").document(currentUser.uid).setData(currentUserData)
+    }
+    
    private static func fetchSwipes(completion: @escaping([String: Bool]) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
