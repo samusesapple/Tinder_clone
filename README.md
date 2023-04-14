@@ -104,7 +104,7 @@
 
 * #### 서로 좋아요 된 상태면 매칭 및 서로 메세지에서 매칭된 상대 목록 확인 <br>
 ![Simulator Screen Recording - iPhone 14 Pro - 2023-04-14 at 16 08 54](https://user-images.githubusercontent.com/126672733/231969993-f40f9013-8767-473d-a462-c08b898dc7a2.gif)
-![Simulator Screen Recording - iPhone 14 - 2023-04-14 at 16 29 12](https://user-images.githubusercontent.com/126672733/231974297-11d4bda3-dc01-4edb-8bfe-ddc2e85cc485.gif)
+![Simulator Screen Recording - iPhone 14 - 2023-04-14 at 16 52 09](https://user-images.githubusercontent.com/126672733/231980487-8b7e62ef-c923-4618-9a96-1ae1d1369b67.gif)
 
 
 
