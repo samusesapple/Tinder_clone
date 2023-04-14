@@ -41,6 +41,7 @@
 3. 저장 버튼을 누르지 않은 경우 - 버튼의 view가 정상적으로 변경됨을 확인했습니다. 
 4. imageURLs의 배열 갯수를 count 하자, 해당 전역변수의 count가 증가한 것을 확인했습니다.
 5. imagePickerController(...didFinishPickingMediaWithInfo: ) 함수에서 호출된 메서드가 잘못됨을 인지했습니다.
+6. 호출되는 함수를 보니, imageURLs 배열에 새로운 요소를 append하고 있기에, 새로운 요소가 추가만 되고 기존의 요소를 변경하는 로직은 구현되지 않음을 인지할 수 있었습니다.
 <br>
 <br>
 
@@ -48,8 +49,10 @@
 <img width="803" alt="image" src="https://user-images.githubusercontent.com/126672733/231732988-ede2f56f-3a59-4293-a63d-0a88577e4f51.png">
 <img width="700" alt="image" src="https://user-images.githubusercontent.com/126672733/231732091-4579f5d4-9076-41ab-927f-3d3a21a6e8b9.png">
 
-1. 버튼에 이미지가 있는 경우, 버튼의 index값을 인자로 받아서 해당되는 index의 imageURL을 새로운 URL로 대치하는 함수를 생성했습니다.
+1. 버튼에 이미지가 있는 경우, 버튼의 index값을 인자로 받아서 해당되는 index의 imageURL을 새로운 URL로 대치하는 함수를 생성했습니다. updateImage(image: UIImage, index: Int) <br>
 2. 기존 버튼에 이미지가 있을 경우 / 없을 경우를 분기처리 했습니다.
+- 기존 버튼에 이미지가 있는 경우 : 기존에 사용했던 uploadImage() 함수 사용
+- 기존 버튼에 이미지 없는 경우 : updateImage(image: UIImage, index: Int) 함수 사용
 <br>
 
 ### 구현 내용 
