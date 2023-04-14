@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import JGProgressHUD
 
 class HomeViewController: UIViewController {
     
@@ -226,7 +227,15 @@ extension HomeViewController: CardViewDelegate {
 
 extension HomeViewController: BottomControlsStackViewDelegate {
     func handleRefresh() {
-        print(#function)
+        guard let user = self.user else { return }
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Loading Users..."
+        hud.show(in: self.view)
+        
+        Service.fetchWholeUsers(forCurrentUser: user) { users in
+            self.viewModels = users.map({CardViewModel(user: $0)})
+            hud.dismiss(animated: true)
+        }
     }
     
     func handleDislike() {
@@ -275,7 +284,7 @@ extension HomeViewController: MatchViewDelegate {
     func sendMessage(_ view: MatchView, wantsToSendMessageTo user: User) {
         print("Show conversation with : \(user.name)")
         showMessages()
-        
+        view.handleDismissView()
     }
     
     
