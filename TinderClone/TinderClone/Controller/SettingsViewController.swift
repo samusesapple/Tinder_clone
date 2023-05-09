@@ -67,10 +67,10 @@ class SettingsViewController: UITableViewController {
         hud.textLabel.text = "Loading Image.."
         hud.show(in: view)
         
-        Service.uploadImage(image: image) { imageURL in
+        Service.uploadImage(image: image) { [weak self] imageURL in
             // 새로운 이미지를 user의 imageURL 배열에 추가
             print("upload NEW IMAGE")
-            self.user.imageURLs.append(imageURL)
+            self?.user.imageURLs.append(imageURL)
             hud.dismiss(animated: true)
         }
     }
@@ -80,10 +80,10 @@ class SettingsViewController: UITableViewController {
         hud.textLabel.text = "Loading Image.."
         hud.show(in: view)
         
-        Service.uploadImage(image: image) { imageURL in
+        Service.uploadImage(image: image) { [weak self] imageURL in
             // index에 해당되는 버튼에 이미지가 있다면, 기존 imageURL을 새로운 url로 대치
             print("updateImage - UPDATE \(index)'s IMAGE")
-            self.user.imageURLs[index] = imageURL
+            self?.user.imageURLs[index] = imageURL
             
             hud.dismiss(animated: true)
         }

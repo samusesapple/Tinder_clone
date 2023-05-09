@@ -60,7 +60,6 @@ class ProfileViewController: UIViewController {
     
     private let professionLabel: UILabel = {
         let label = UILabel()
-        label.text = "iOS Programmer"
         label.font = UIFont.systemFont(ofSize: 20)
         return label
     }()
@@ -69,7 +68,6 @@ class ProfileViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 20)
-        label.text = "I love Swift!"
         return label
     }()
     

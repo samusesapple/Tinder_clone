@@ -84,14 +84,14 @@ class RegistrationController: UIViewController {
         
         let userInfo = AuthCredentials(email: email, fullName: fullName, password: password, profileImage: userImage)
         
-        AuthService.registerUser(userInfo: userInfo) { error in
+        AuthService.registerUser(userInfo: userInfo) { [weak self] error in
             if let error = error {
                 print("ERROR - handleRegisterUser() : \(error.localizedDescription)")
                 hud.dismiss(animated: true)
                 return
             }
             hud.dismiss(animated: true)
-            self.delegate?.authenticationComplete()
+            self?.delegate?.authenticationComplete()
         }
     }
     

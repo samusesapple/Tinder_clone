@@ -54,9 +54,9 @@ class HomeViewController: UIViewController {
     func fetchCurrentUserAndCards() {
         // 최근 유저의 uid가 있는지 확인 후, 있으면 해당되는 유저 데이터 받기
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        Service.fetchUser(withUID: uid) { user in
-            self.user = user
-            self.fetchWholeUsers(forCurrentUser: user)
+        Service.fetchUser(withUID: uid) { [weak self] user in
+            self?.user = user
+            self?.fetchWholeUsers(forCurrentUser: user)
         }
     }
     
@@ -78,16 +78,16 @@ class HomeViewController: UIViewController {
     }
     
     func saveSwipeAndCheckMatch(forUser user: User, didLiked: Bool) {
-        Service.saveSwipe(forUser: user, isLike: didLiked) { error in
-            self.topCardView = self.cardViews.last
+        Service.saveSwipe(forUser: user, isLike: didLiked) { [weak self] error in
+            self?.topCardView = self?.cardViews.last
             
             // didLiked가 참인 경우에만 상대방의 매치 정보 확인
             guard didLiked == true else { return }
             
-            Service.checkIfMatchExists(forUser: user) { didMatch in
-                self.presentMatchView(matchUser: user)
+            Service.checkIfMatchExists(forUser: user) { [weak self] didMatch in
+                self?.presentMatchView(matchUser: user)
                 
-                guard let currentUser = self.user else { return }
+                guard let currentUser = self?.user else { return }
                 Service.uploadMatch(currentUser: currentUser, matchedUser: user)
             }
         }
